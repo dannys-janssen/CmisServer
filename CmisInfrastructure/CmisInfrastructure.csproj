@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.6</TargetFramework>
+    <RootNamespace>Cmis.Infrastructure</RootNamespace>
+    <PackageId>cmisserver.infrastructure</PackageId>
+    <PackageVersion>0.1</PackageVersion>
+    <Authors>Dannys Janssen</Authors>
+    <Description>Infrastructure library for .NET Core CMIS server.</Description>
+    <DevelopmentDependency>true</DevelopmentDependency>
+    <PackageLicenseUrl>MIT/X11</PackageLicenseUrl>
+    <Owners>Dannys Janssen</Owners>
+    <Title>Infrastructure library for .NET Core CMIS server.</Title>
+    <PackageProjectUrl>cmisserver</PackageProjectUrl>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DocumentationFile>bin\Debug\netstandard1.4\CmisInfrastructure.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="NuGet.Build.Packaging" Version="0.1.157-dev" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Enums\" />
+  </ItemGroup>
+</Project>

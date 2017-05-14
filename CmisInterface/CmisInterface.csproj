@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.6</TargetFramework>
+    <RootNamespace>Cmis.Interface</RootNamespace>
+    <Description>Interface library for .NET Core CMIS server.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CmisInfrastructure\CmisInfrastructure.csproj" />
+  </ItemGroup>
+</Project>
