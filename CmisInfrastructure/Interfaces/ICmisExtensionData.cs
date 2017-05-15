@@ -2,7 +2,7 @@
 // ICmisExtensionData.cs
 //
 // Author:
-//       Dannys Janssen <dannys.janssen@email.de>
+//       Dannys Janssen
 //
 // Copyright (c) 2017 Dannys Janssen
 //
