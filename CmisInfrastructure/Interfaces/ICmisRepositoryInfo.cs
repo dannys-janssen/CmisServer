@@ -113,5 +113,17 @@ namespace Cmis.Infrastructure
         /// </summary>
         /// <value>The supported permissions.</value>
         CmisSupportedPermissions SupportedPermissions { get; }
+
+		/// <summary>
+		/// Gets the allowed value(s) for applyACL, which control how non-direct ACEs are handled by the repository.
+		/// </summary>
+		/// <value>The ACL propagation value.</value>
+		CmisAclProgagation Propagation { get; }
+
+		/// <summary>
+		/// Gets the list of repository-speciﬁc permissions the repository supports for managing ACEs.
+		/// </summary>
+		/// <value>The permissions.</value>
+		IList<CmisBasicPermission?> Permissions { get; }
     }
 }

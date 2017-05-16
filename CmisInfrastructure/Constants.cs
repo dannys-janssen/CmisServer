@@ -35,8 +35,38 @@ namespace Cmis.Infrastructure
         /// <summary>         /// CMIS prefix for naming objects, types etc.         /// </summary>         public const string CmisPrefix = "cmis";
 
         /// <summary>
+        /// CMIS ACL propagation object only.
+        /// </summary>
+        public const string CmisAclPropagationObjectOnly = "objectonly";
+
+        /// <summary>
+        /// CMIS ACL propagation propagate.
+        /// </summary>
+        public const string CmisAclPropagationPropagate = "propagate";
+
+        /// <summary>
+        /// CMIS ACL repository determined.
+        /// </summary>
+        public const string CmisAclRepositoryDetermined = "repositorydetermined";
+
+        /// <summary>
         /// CMIS base type identifier.
         /// </summary>         public const string CmisBaseTypeId = CmisPrefix + ":baseTypeId";
+
+		/// <summary>
+		/// CMIS 'all' basic permission.
+		/// </summary>
+		public const string CmisBasicPermissionAll = CmisPrefix + ":all";
+
+        /// <summary>
+        /// CMIS 'read' basic permission.
+        /// </summary>
+        public const string CmisBasicPermissionRead = CmisPrefix + ":read";
+
+		/// <summary>
+		/// CMIS 'write' basic permission.
+		/// </summary>
+		public const string CmisBasicPermissionWrite = CmisPrefix + ":write";
 
         /// <summary>
         /// CMIS created by.
@@ -84,17 +114,17 @@ namespace Cmis.Infrastructure
         public const string CmisObjectTypeId = CmisPrefix + ":objectTypeId";
 
         /// <summary>
-        /// CMIS basic permissions.
+        /// CMIS basic permissions type.
         /// </summary>
         public const string CmisPermissionTypeBasic = "basic";
 
         /// <summary>
-        /// CMIS repository permissions.
+        /// CMIS repository permissions type.
         /// </summary>
         public const string CmisPermissionTypeRepository = "repository";
 
         /// <summary>
-        /// CMIS basic and repostiory permissions.
+        /// CMIS basic and repostiory permissions type.
         /// </summary>
         public const string CmisPermissionTypeBoth = "both";
 
