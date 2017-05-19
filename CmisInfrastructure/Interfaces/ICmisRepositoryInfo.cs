@@ -23,11 +23,11 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-using System;
-using System.Collections.Generic;
 
 namespace Cmis.Infrastructure
 {
+    using System.Collections.Generic;
+
     /// <summary>
     /// CMIS repository info. Holds informations about a specific CMIS repository.
     /// </summary>
@@ -37,7 +37,7 @@ namespace Cmis.Infrastructure
         /// Gets the CMIS repository identifier.
         /// </summary>
         /// <value>The identifier.</value>
-        string ReposiroryId { get; }
+        string RepositoryId { get; }
 
         /// <summary>
         /// Gets the CMIS repository display name.
@@ -75,7 +75,11 @@ namespace Cmis.Infrastructure
         /// <value>The root folder identifier.</value>
         string RootFolderId { get; }
 
-        IList<ICmisRepsositoryCapability> Capabilities { get; }
+        /// <summary>
+        /// Gets the optional repository capabilities.
+        /// </summary>
+        /// <value>The capabilities.</value>
+        IList<ICmisRepositoryCapability> Capabilities { get; }
 
 		/// <summary>
 		/// Gets the change log token corresponding to the most recent change event for any object in the repository.
@@ -125,5 +129,29 @@ namespace Cmis.Infrastructure
 		/// </summary>
 		/// <value>The permissions.</value>
 		IList<CmisBasicPermission?> Permissions { get; }
+
+		/// <summary>
+		/// Gets the list of mappings for the CMIS basic permissions to allowable actions.
+		/// </summary>
+		/// <value>The list of permission mappings.</value>
+		IList<ICmisPermissionMapping> Mappings { get; }
+
+		/// <summary>
+		/// If set, this ﬁeld holds the principal who is used for anonymous access. This principal can then be passed to the ACL services to specify what permissions anonymous users should have.
+		/// </summary>
+		/// <value>The anonymous access principal.</value>
+		string PrincipalAnonymous { get; }
+
+		/// <summary>
+		/// If set, this ﬁeld holds the principal who is used to indicate any authenticated user. This principal can then be passed to the ACL services to specify what permissions any authenticated user should have.
+		/// </summary>
+		/// <value>The principal representing any authenticated user.</value>
+		string PrincipalAnyone { get; }
+
+		/// <summary>
+		/// Gets the optional list of additional repository features.
+		/// </summary>
+		/// <value>The extended features.</value>
+		IList<ICmisRepositoryFeature> ExtendedFeatures { get; }
     }
 }

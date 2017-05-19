@@ -24,7 +24,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using System;
 namespace Cmis.Infrastructure
 {
     /// <summary>
@@ -67,6 +66,21 @@ namespace Cmis.Infrastructure
 		/// CMIS 'write' basic permission.
 		/// </summary>
 		public const string CmisBasicPermissionWrite = CmisPrefix + ":write";
+
+		/// <summary>
+		/// Repository capabilities: Ordering is not supported.
+		/// </summary>
+		public const string CmisCapabilityOrderByNone = "none";
+
+		/// <summary>
+		/// Repository capabilities: Only common CMIS properties are supported.
+		/// </summary>
+		public const string CmisCapabilityOrderByCommon = "common";
+
+		/// <summary>
+		/// Repository capabilities: Common CMIS properties and custom object-type properties are supported.
+		/// </summary>
+		public const string CmisCapabilityOrderByCustom = "custom";
 
         /// <summary>
         /// CMIS created by.

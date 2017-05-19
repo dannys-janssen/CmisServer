@@ -1,5 +1,5 @@
 ﻿//
-// ICmisExtensionElement.cs
+// ICmisPermissionMapping.cs
 //
 // Author:
 //       Dannys Janssen
@@ -29,38 +29,29 @@ namespace Cmis.Infrastructure
     using System.Collections.Generic;
 
 	/// <summary>
-	/// CMIS extension element. See http://docs.oasis-open.org/cmis/CMIS/v1.1/os/CMIS-v1.1-os.html
+	/// CMIS permission mapping.
+	/// Since several allowable actions require permissions on more than one 
+	/// object, the mapping table is deﬁned in terms of permission "keys". 
+	/// (For example, moving a document from one folder to another may 
+	/// require permissions on the document and each of the folders.) 
+	/// Each key combines the name of the allowable action and the object 
+	/// for which the principal needs the required permission. For example, 
+	/// the canMoveObject.Source key indicates the permissions that the 
+	/// principal must have on the "source folder" to move an object from 
+	/// that folder into another folder.
 	/// </summary>
-	public interface ICmisExtensionElement
+	public interface ICmisPermissionMapping : ICmisExtensionData
     {
 		/// <summary>
-		/// Gets or sets the CMIS extension name.
-		/// </summary>
-		/// <value>The CMIS extension name.</value>
-		string Name { get; set; }
+		/// Gets the permission key name.
+        /// </summary>
+        /// <value>The permission key.</value>
+        string Key { get; }
 
 		/// <summary>
-		/// Gets or sets the CMIS extension namespace.
+		/// The name of one or more permissions that the principal MUST have. If more than one permission is speciﬁed, then the principal MUST be allowed to perform the operation if they have ANY of the listed permissions.
 		/// </summary>
-		/// <value>The CMIS extension namespace.</value>
-		string Namespace { get; set; }
-
-		/// <summary>
-		/// Gets or sets the CMIS extension value.
-		/// </summary>
-		/// <value>The CMIS extension value.</value>
-		string Value { get; set; }
-
-		/// <summary>
-		/// Gets or sets the CMIS extension attributes.
-		/// </summary>
-		/// <value>The CMIS extension attributes.</value>
-		IDictionary<string, string> Attributes { get; set; }
-
-		/// <summary>
-		/// Gets or sets optional child CMIS extension elements.
-		/// </summary>
-		/// <value>The CMIS extension children.</value>
-		IList<ICmisExtensionElement> Children { get; set; }
+		/// <value>The list of permission names.</value>
+		IList<string> Permissions { get; }
     }
 }

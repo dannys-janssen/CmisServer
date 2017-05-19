@@ -1,5 +1,5 @@
 ﻿//
-// ICmisExtensionElement.cs
+// CmisExtensionElement.cs
 //
 // Author:
 //       Dannys Janssen
@@ -24,43 +24,44 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-namespace Cmis.Infrastructure
+namespace Cmis.Model
 {
     using System.Collections.Generic;
+    using Cmis.Infrastructure;
 
 	/// <summary>
 	/// CMIS extension element. See http://docs.oasis-open.org/cmis/CMIS/v1.1/os/CMIS-v1.1-os.html
 	/// </summary>
-	public interface ICmisExtensionElement
+	public class CmisExtensionElement : ICmisExtensionElement
     {
 		/// <summary>
 		/// Gets or sets the CMIS extension name.
 		/// </summary>
 		/// <value>The CMIS extension name.</value>
-		string Name { get; set; }
+		public string Name { get; set; }
 
 		/// <summary>
 		/// Gets or sets the CMIS extension namespace.
 		/// </summary>
 		/// <value>The CMIS extension namespace.</value>
-		string Namespace { get; set; }
+		public string Namespace { get; set; }
 
 		/// <summary>
 		/// Gets or sets the CMIS extension value.
 		/// </summary>
 		/// <value>The CMIS extension value.</value>
-		string Value { get; set; }
+		public string Value { get; set; }
 
 		/// <summary>
 		/// Gets or sets the CMIS extension attributes.
 		/// </summary>
 		/// <value>The CMIS extension attributes.</value>
-		IDictionary<string, string> Attributes { get; set; }
+		public IDictionary<string, string> Attributes { get; set; }
 
 		/// <summary>
 		/// Gets or sets optional child CMIS extension elements.
 		/// </summary>
 		/// <value>The CMIS extension children.</value>
-		IList<ICmisExtensionElement> Children { get; set; }
+		public IList<ICmisExtensionElement> Children { get; set; }
     }
 }

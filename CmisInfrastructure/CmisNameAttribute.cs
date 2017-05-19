@@ -24,9 +24,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using System;
 namespace Cmis.Infrastructure
 {
+    using System;
+
     /// <summary>
     /// CMIS name attribute. Adds the corresponding CMIS compliant name to a class, property, field or enumeration value.
     /// </summary>

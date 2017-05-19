@@ -24,11 +24,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using System;
-using System.Collections.Generic;
-
 namespace Cmis.Infrastructure
 {
+    using System.Collections.Generic;
+
     /// <summary>
     /// CMIS extension data. Holds a list of <see cref="ICmisExtensionElement"/> instances that represent optional extension data to the CMIS specification.
     /// </summary>

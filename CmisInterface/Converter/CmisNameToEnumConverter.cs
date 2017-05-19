@@ -23,12 +23,13 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-using System;
-using System.Reflection;
-using Cmis.Infrastructure;
 
 namespace Cmis.Interface
 {
+	using System;
+	using System.Reflection;
+	using Cmis.Infrastructure;
+
     /// <summary>
     /// CMIS name to enum converter. Converts CMIS compliant names to enum values, <see cref="T:CmisNameAttribute"/>.
     /// </summary>

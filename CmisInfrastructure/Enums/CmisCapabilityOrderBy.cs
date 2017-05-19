@@ -1,5 +1,5 @@
 ﻿//
-// ICmisExtensionElement.cs
+// CmisCapabilityOrderBy.cs
 //
 // Author:
 //       Dannys Janssen
@@ -26,41 +26,27 @@
 
 namespace Cmis.Infrastructure
 {
-    using System.Collections.Generic;
-
 	/// <summary>
-	/// CMIS extension element. See http://docs.oasis-open.org/cmis/CMIS/v1.1/os/CMIS-v1.1-os.html
+	/// CMIS ordering capabilities of the repository.
 	/// </summary>
-	public interface ICmisExtensionElement
+	public enum CmisCapabilityOrderBy
     {
 		/// <summary>
-		/// Gets or sets the CMIS extension name.
+		/// Ordering is not supported.
 		/// </summary>
-		/// <value>The CMIS extension name.</value>
-		string Name { get; set; }
+        [CmisName(Constants.CmisCapabilityOrderByNone)]
+		None,
 
 		/// <summary>
-		/// Gets or sets the CMIS extension namespace.
+		/// Only common CMIS properties are supported.
 		/// </summary>
-		/// <value>The CMIS extension namespace.</value>
-		string Namespace { get; set; }
+        [CmisName(Constants.CmisCapabilityOrderByCommon)]
+		Common,
 
 		/// <summary>
-		/// Gets or sets the CMIS extension value.
+		/// Common CMIS properties and custom object-type properties are supported.
 		/// </summary>
-		/// <value>The CMIS extension value.</value>
-		string Value { get; set; }
-
-		/// <summary>
-		/// Gets or sets the CMIS extension attributes.
-		/// </summary>
-		/// <value>The CMIS extension attributes.</value>
-		IDictionary<string, string> Attributes { get; set; }
-
-		/// <summary>
-		/// Gets or sets optional child CMIS extension elements.
-		/// </summary>
-		/// <value>The CMIS extension children.</value>
-		IList<ICmisExtensionElement> Children { get; set; }
+        [CmisName(Constants.CmisCapabilityOrderByCustom)]
+		Custom
     }
 }

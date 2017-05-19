@@ -1,5 +1,5 @@
 ﻿//
-// ICmisRepsositoryCapability.cs
+// CmisExtensionData.cs
 //
 // Author:
 //       Dannys Janssen
@@ -23,11 +23,21 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-using System;
-namespace Cmis.Infrastructure
+
+namespace Cmis.Model
 {
-    public interface ICmisRepsositoryCapability
+    using System.Collections.Generic;
+    using Cmis.Infrastructure;
+
+	/// <summary>
+	/// CMIS extension data. Holds a list of <see cref="ICmisExtensionElement"/> instances that represent optional extension data to the CMIS specification.
+	/// </summary>
+	public class CmisExtensionData : ICmisExtensionData
     {
-		//TODO: Define ICmisRepsositoryCapability
-	}
+		/// <summary>
+		/// Gets or sets the list of CMIS extensions.
+		/// </summary>
+		/// <value>The list of CMIS extensions.</value>
+		public IList<ICmisExtensionElement> Extensions { get; set; }
+    }
 }
