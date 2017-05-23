@@ -82,6 +82,106 @@ namespace Cmis.Infrastructure
 		/// </summary>
 		public const string CmisCapabilityOrderByCustom = "custom";
 
+		/// <summary>
+		/// CMIS content stream update capability: The content stream may never be updated.
+		/// </summary>
+		public const string CmisCapabilityContentStreamUpdatabilityNone = "none";
+
+		/// <summary>
+		/// CMIS content stream update capability: The content stream may be updated any time.
+		/// </summary>
+		public const string CmisCapabilityContentStreamUpdatabilityAnyTime = "anytime";
+
+		/// <summary>
+		/// CMIS content stream update capability: The content stream may be updated only when checked out. Private Working Copy (PWC) is described in section 2.1.13 Versioning.
+		/// </summary>
+		public const string CmisCapabilityContentStreamUpdatabilityPwcOnly = "pwconly";
+
+		/// <summary>
+		/// CMIS Change capability: The repository does not support the change log feature.
+		/// </summary>
+		public const string CmisCapabilityChangesNone = "none";
+
+		/// <summary>
+		/// CMIS Change capability: The change log can return only the object ids for changed objects in the repository and an indication of the type of change, not details of the actual change.
+		/// </summary>
+		public const string CmisCapabilityChangesObjectIdsOnly = "objectidsonly";
+
+		/// <summary>
+		/// CMIS Change capability: The change log can return properties and the object id for the changed objects.
+		/// </summary>
+		public const string CmisCapabilityChangesProperties = "properties";
+
+		/// <summary>
+		/// CMIS Change capability: The change log can return the object ids for changed objects in the repository and more information about the actual change.
+		/// </summary>
+		public const string CmisCapabilityChangesAll = "all";
+
+		/// <summary>
+		/// CMIS renditions capability: The repository does not expose renditions at all.
+		/// </summary>
+		public const string CmisCapabilityRenditionsNone = "none";
+
+		/// <summary>
+		/// CMIS renditions capability: Renditions are provided by the repository and readable by the client.
+		/// </summary>
+		public const string CmisCapabilityRenditionsRead = "read";
+
+		/// <summary>
+		/// No queries of any kind can be fulﬁlled.
+		/// </summary>
+		public const string CmisCapabilityQueryNone = "none";
+
+		/// <summary>
+		/// Only queries that ﬁlter based on object properties can be fulﬁlled. Speciﬁcally, the CONTAINS() predicate function is not supported.
+		/// </summary>
+		public const string CmisCapabilityQueryMetadataOnly = "metadataonly";
+
+		/// <summary>
+		/// Only queries that ﬁlter based on the full-text content of documents can be fulﬁlled. Speciﬁcally, only the CONTAINS() predicate function can be included in the WHERE clause.
+		/// </summary>
+		public const string CmisCapabilityQueryFulltextOnly = "fulltextonly";
+
+		/// <summary>
+		/// The repository can fulﬁll queries that ﬁlter EITHER on the full-text content of documents OR on their properties, but NOT if both types of ﬁlters are included in the same query.
+		/// </summary>
+		public const string CmisCapabilityQueryBothSeparate = "bothseparate";
+
+		/// <summary>
+		/// The repository can fulﬁll queries that ﬁlter on both the full-text content of documents and their properties in the same query.
+		/// </summary>
+		public const string CmisCapabilityQueryBothCombined = "bothcombined";
+
+		/// <summary>
+		/// The repository cannot fulﬁll any queries that include any JOIN clauses on two primary types. If the Repository supports secondary types, JOINs on secondary types SHOULD be supported, even if the support level is none.
+		/// </summary>
+		public const string CmisCapabilityJoinNone = "none";
+
+		/// <summary>
+		/// The repository can fulﬁll queries that include an INNER JOIN clause, but cannot fulﬁll queries that include other types of JOIN clauses.
+		/// </summary>
+		public const string CmisCapabilityJoinInnerOnly = "inneronly";
+
+		/// <summary>
+		/// The repository can fulﬁll queries that include any type of JOIN clause deﬁned by the CMIS query grammar.
+		/// </summary>
+		public const string CmisCapabilityJoinInnerAndOuter = "innerandouter";
+
+		/// <summary>
+		/// The repository does not support ACL services.
+		/// </summary>
+		public const string CmisCapabilityACLNone = "none";
+
+		/// <summary>
+		/// The repository supports discovery of ACLs (getACL and other services).
+		/// </summary>
+		public const string CmisCapabilityACLDiscover = "discover";
+
+		/// <summary>
+		/// The repository supports discovery of ACLs AND applying ACLs (getACL and applyACL services).
+		/// </summary>
+		public const string CmisCapabilityACLManage = "manage";
+
         /// <summary>
         /// CMIS created by.
         /// </summary>         public const string CmisCreatedBy = CmisPrefix + ":createdBy"; 
@@ -151,6 +251,46 @@ namespace Cmis.Infrastructure
         /// CMIS policy text.
         /// </summary>
         public const string CmisPolicyText = CmisPrefix + ":policyText";
+
+        /// <summary>
+        /// CMIS property type string.
+        /// </summary>
+        public const string CmisPropertyTypeString = "string";
+
+		/// <summary>
+		/// CMIS property type boolean.
+		/// </summary>
+		public const string CmisPropertyTypeBoolean = "boolean";
+
+		/// <summary>
+		/// CMIS property type decimal.
+		/// </summary>
+		public const string CmisPropertyTypeDecimal = "decimal";
+
+		/// <summary>
+		/// CMIS property type integer.
+		/// </summary>
+		public const string CmisPropertyTypeInteger = "integer";
+
+		/// <summary>
+		/// CMIS property type date time.
+		/// </summary>
+		public const string CmisPropertyTypeDateTime = "datetime";
+
+		/// <summary>
+		/// CMIS property type URI.
+		/// </summary>
+		public const string CmisPropertyTypeUri = "uri";
+
+		/// <summary>
+		/// CMIS property type identifier.
+		/// </summary>
+		public const string CmisPropertyTypeId = "id";
+
+		/// <summary>
+		/// CMIS property type HTML fragment.
+		/// </summary>
+		public const string CmisPropertyTypeHtml = "html";
 
         /// <summary>
         /// CMIS relationship.

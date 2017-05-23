@@ -78,8 +78,8 @@ namespace Cmis.Infrastructure
         /// <summary>
         /// Gets the optional repository capabilities.
         /// </summary>
-        /// <value>The capabilities.</value>
-        IList<ICmisRepositoryCapability> Capabilities { get; }
+        /// <value>The optional repository capabilities.</value>
+        ICmisRepositoryCapabilities Capabilities { get; }
 
 		/// <summary>
 		/// Gets the change log token corresponding to the most recent change event for any object in the repository.
@@ -151,7 +151,7 @@ namespace Cmis.Infrastructure
 		/// <summary>
 		/// Gets the optional list of additional repository features.
 		/// </summary>
-		/// <value>The extended features.</value>
+		/// <value>The additional features of the repository.</value>
 		IList<ICmisRepositoryFeature> ExtendedFeatures { get; }
     }
 }
