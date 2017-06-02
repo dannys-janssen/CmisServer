@@ -182,6 +182,101 @@ namespace Cmis.Infrastructure
 		/// </summary>
 		public const string CmisCapabilityACLManage = "manage";
 
+		/// <summary>
+		/// Root Folder Children Collection: Root folder of the repository.
+		/// </summary>
+		public const string CmisCollectionTypeRoot = "root";
+
+		/// <summary>
+		/// Types Children Collection: Collection containing the base types in the repository.
+		/// </summary>
+		public const string CmisCollectionTypeTypes = "types";
+
+		/// <summary>
+		/// heckedOut collection: collection containing all checked out documents user can see.
+		/// </summary>
+		public const string CmisCollectionTypeCheckedOut = "checkedout";
+
+		/// <summary>
+		/// Query collection: Collection for posting queries to be executed.
+		/// </summary>
+		public const string CmisCollectionTypeQuery = "query";
+
+		/// <summary>
+		/// Unﬁled collection: Collection for posting documents to be unﬁled; read can be disabled.
+		/// </summary>
+		public const string CmisCollectionTypeUnfiled = "unfiled";
+
+		/// <summary>
+		/// Bulk update collection: Collection for posting property updates for multiple objects at once.
+		/// </summary>
+		public const string CmisCollectionTypeUpdate = "update";
+
+		/// <summary>
+		/// Unknown media type. Equals to application/octet-stream.
+		/// </summary>
+		public const string CmisMediaTypeUnknown = "appliaction/octet-stream";
+
+		/// <summary>
+		/// Atom service media type. application/atomsvc+xml
+		/// </summary>
+		public const string CmisMediaTypeService = "application/atomsvc+xml";
+
+		/// <summary>
+		/// Atom Feed media type. application/atom+xml;type=feed
+		/// </summary>
+		public const string CmisMediaTypeFeed = "application/atom+xml;type=feed";
+
+		/// <summary>
+		/// Atom entry media type. application/atom+xml;type=entry
+		/// </summary>
+		public const string CmisMediaTypeEntry = "application/atom+xml;type=entry";
+
+		/// <summary>
+		/// Atom Children media type. application/atom+xml;type=feed
+		/// </summary>
+		public const string CmisMediaTypeChildren = "application/atom+xml;type=feed";
+
+		/// <summary>
+		/// CMIS Tree media type. application/cmistree+xml
+		/// </summary>
+		public const string CmisMediaTypeDescendants = "application/cmistree+xml";
+
+		/// <summary>
+		/// Atom Query media type. application/cmisquery+xml
+		/// </summary>
+		public const string CmisMediaTypeQuery = "application/cmisquery+xml";
+
+		/// <summary>
+		/// CMIS allowable action media type. application/cmisallowableactions+xml
+		/// </summary>
+		public const string CmisMediaTypeAllowableAction = "application/cmisallowableactions+xml";
+
+		/// <summary>
+		/// CMIS ACL media type. application/cmisacl+xml
+		/// </summary>
+		public const string CmisMediaTypeAcl = "application/cmisacl+xml";
+
+        /// <summary>
+        /// The CMIS URI template type for object by identifier query.
+        /// </summary>
+        public const string CmisUriTemplateTypeObjectById = "objectbyid";
+
+        /// <summary>
+        /// The CMIS URI template type for object by path query.
+        /// </summary>
+        public const string CmisUriTemplateTypeObjectByPath = "objectbypath";
+
+        /// <summary>
+        /// The CMIS URI template type for queries.
+        /// </summary>
+        public const string CmisUriTemplateTypeQuery = "query";
+
+        /// <summary>
+        /// The CMIS URI template type for type by identifier query.
+        /// </summary>
+        public const string CmisUriTemplateTypeTypeById = "typebyid";
+
         /// <summary>
         /// CMIS created by.
         /// </summary>         public const string CmisCreatedBy = CmisPrefix + ":createdBy"; 
