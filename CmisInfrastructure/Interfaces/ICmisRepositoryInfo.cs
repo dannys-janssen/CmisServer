@@ -100,30 +100,6 @@ namespace Cmis.Infrastructure
 		/// <remarks>The base type cmis:secondary MUST NOT be used here. Only primary base types can be in this list.</remarks>
 		IList<CmisBaseTypeId?> ChangesOnType { get; }
 
-        /// <summary>
-        /// Gets the supported types of permissions.
-        /// </summary>
-        /// <value>The supported permissions.</value>
-        CmisSupportedPermissions SupportedPermissions { get; }
-
-		/// <summary>
-		/// Gets the allowed value(s) for applyACL, which control how non-direct ACEs are handled by the repository.
-		/// </summary>
-		/// <value>The ACL propagation value.</value>
-		CmisAclProgagation Propagation { get; }
-
-		/// <summary>
-		/// Gets the list of repository-speciﬁc permissions the repository supports for managing ACEs.
-		/// </summary>
-		/// <value>The permissions.</value>
-		IList<CmisBasicPermission?> Permissions { get; }
-
-		/// <summary>
-		/// Gets the list of mappings for the CMIS basic permissions to allowable actions.
-		/// </summary>
-		/// <value>The list of permission mappings.</value>
-		IList<ICmisPermissionMapping> Mappings { get; }
-
 		/// <summary>
 		/// If set, this ﬁeld holds the principal who is used for anonymous access. This principal can then be passed to the ACL services to specify what permissions anonymous users should have.
 		/// </summary>
