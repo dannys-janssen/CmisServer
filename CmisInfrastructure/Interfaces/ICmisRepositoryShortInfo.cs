@@ -1,5 +1,5 @@
 ﻿//
-// IRepositoryService.cs
+// ICmisRepositoryShortInfo.cs
 //
 // Author:
 //       Dannys Janssen
@@ -23,29 +23,24 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-
-namespace Cmis.Infrastructure.Services
+using System;
+namespace Cmis.Infrastructure
 {
-    using System.Collections.Generic;
-
     /// <summary>
-    /// CMIS Repository service.
+    /// CMIS repository info containing only identifier and name. 
     /// </summary>
-    public interface ICmisRepositoryService
+    public interface ICmisRepositoryShortInfo : ICmisExtensionData
     {
 		/// <summary>
-		/// Returns a list of CMIS repositories available from this CMIS service endpoint.
+		/// Gets the CMIS repository identifier.
 		/// </summary>
-		/// <returns>The list of repository identifiers and names.</returns>
-		IList<ICmisRepositoryShortInfo> GetRepositories();
+		/// <value>The identifier.</value>
+		string RepositoryId { get; }
 
 		/// <summary>
-		/// Returns information about the CMIS repository, the optional capabilities it supports and its access control information if applicable.
+		/// Gets the CMIS repository display name.
 		/// </summary>
-		/// <returns>The repository info.</returns>
-		/// <param name="repositoryId">Repository identifier.</param>
-		ICmisRepositoryInfo GetRepositoryInfo(string repositoryId);
-
-
+		/// <value>The display name.</value>
+		string RepositoryName { get; }
     }
 }

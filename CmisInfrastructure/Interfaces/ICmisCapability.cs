@@ -26,7 +26,11 @@
 using System;
 namespace Cmis.Infrastructure
 {
-    public interface ICmisCpability
+    /// <summary>
+    /// CMIS capability. Repositories provide a list of optional capablities.
+    /// </summary>
+    public interface ICmisCapability
     {
+         
     }
 }

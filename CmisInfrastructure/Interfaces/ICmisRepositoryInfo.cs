@@ -31,20 +31,8 @@ namespace Cmis.Infrastructure
     /// <summary>
     /// CMIS repository info. Holds informations about a specific CMIS repository.
     /// </summary>
-    public interface ICmisRepositoryInfo : ICmisExtensionData
+    public interface ICmisRepositoryInfo : ICmisRepositoryShortInfo, ICmisExtensionData
     {
-        /// <summary>
-        /// Gets the CMIS repository identifier.
-        /// </summary>
-        /// <value>The identifier.</value>
-        string RepositoryId { get; }
-
-        /// <summary>
-        /// Gets the CMIS repository display name.
-        /// </summary>
-        /// <value>The name.</value>
-        string RepositoryName { get; }
-
         /// <summary>
         /// Gets the CMIS repository description.
         /// </summary>

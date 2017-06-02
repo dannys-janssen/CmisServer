@@ -52,7 +52,7 @@ namespace Cmis.Infrastructure
         /// <summary>
         /// Integer property type.
         /// </summary>
-        [CmisName(Constants.CmisPropertyTypeInteger]
+        [CmisName(Constants.CmisPropertyTypeInteger)]
         Integer,
         
         /// <summary>
