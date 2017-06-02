@@ -69,6 +69,12 @@ namespace Cmis.Infrastructure
         /// <value>The optional repository capabilities.</value>
         ICmisRepositoryCapabilities Capabilities { get; }
 
+        /// <summary>
+        /// Gets the optional acl capabilities.
+        /// </summary>
+        /// <value>The acl capabilities.</value>
+        ICmisAclCapability AclCapability { get; }
+
 		/// <summary>
 		/// Gets the change log token corresponding to the most recent change event for any object in the repository.
 		/// </summary>
