@@ -31,7 +31,7 @@ namespace Cmis.Model
     /// <summary>
     /// Atom URI template.
     /// </summary>
-    public class AtomUriTemplate
+    public class AtomUriTemplate : IAtomUriTemplate
     {
         #region Properties
 

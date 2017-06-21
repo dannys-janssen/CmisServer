@@ -1,5 +1,5 @@
 ﻿//
-// IRepositoryService.cs
+// CmisAclCapability.cs
 //
 // Author:
 //       Dannys Janssen
@@ -24,33 +24,44 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-namespace Cmis.Infrastructure
+namespace Cmis.Model
 {
     using System.Collections.Generic;
-    using System.Threading.Tasks;
+    using Cmis.Infrastructure;
 
-    /// <summary>
-    /// CMIS Repository service.
-    /// </summary>
-    public interface ICmisRepositoryService
+	/// <summary>
+	/// CMIS ACL capability.
+	/// </summary>
+	public class CmisAclCapability : ICmisAclCapability
     {
 		/// <summary>
-		/// Returns a list of CMIS repositories available from this CMIS service endpoint.
+		/// Gets the supported types of permissions.
 		/// </summary>
-		/// <returns>The list of repository identifiers and names.</returns>
-		Task<IList<ICmisRepositoryShortInfo>> GetRepositoriesAsync();
+		/// <value>The supported permissions.</value>
+		public CmisSupportedPermissions SupportedPermissions { get; set; }
 
 		/// <summary>
-		/// Returns information about the CMIS repository, the optional capabilities it supports and its access control information if applicable.
+		/// Gets the allowed value(s) for applyACL, which control how non-direct ACEs are handled by the repository.
 		/// </summary>
-		/// <returns>The repository info.</returns>
-		/// <param name="repositoryId">Repository identifier.</param>
-		Task<ICmisRepositoryInfo> GetRepositoryInfoAsync(string repositoryId);
+		/// <value>The ACL propagation value.</value>
+		public CmisAclProgagation Propagation { get; set; }
 
 		/// <summary>
-		/// Gets the AtomPub Service Document that contains the set of repositories that are available. See http://docs.oasis-open.org/cmis/CMIS/v1.1/os/CMIS-v1.1-os.html#x1-4280007
+		/// Gets the list of repository-speciﬁc permissions the repository supports for managing ACEs.
 		/// </summary>
-		/// <returns>The Atom service document.</returns>
-		Task<IAtomService> GetServiceDocument();
+		/// <value>The permissions.</value>
+		public IList<ICmisPermissionDefinition> Permissions { get; set; }
+
+		/// <summary>
+		/// Gets the list of mappings for the CMIS basic permissions to allowable actions.
+		/// </summary>
+		/// <value>The list of permission mappings.</value>
+		public IList<ICmisPermissionMapping> PermissionMapping { get; set; }
+
+		/// <summary>
+		/// Gets or sets the list of CMIS extensions.
+		/// </summary>
+		/// <value>The list of CMIS extensions.</value>
+		public IList<ICmisExtensionElement> Extensions { get; set; }
     }
 }

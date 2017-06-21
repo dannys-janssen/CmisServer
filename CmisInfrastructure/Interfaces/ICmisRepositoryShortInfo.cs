@@ -42,5 +42,17 @@ namespace Cmis.Infrastructure
 		/// </summary>
 		/// <value>The display name.</value>
 		string RepositoryName { get; }
+
+        /// <summary>
+        /// Gets the CMIS repository URL.
+        /// </summary>
+        /// <value>The repository URL.</value>
+        string RepositoryUrl { get; }
+
+        /// <summary>
+        /// Gets the CMIS repository root folder URL.
+        /// </summary>
+        /// <value>The root folder URL.</value>
+        string RootFolderUrl { get; }
     }
 }

@@ -8,5 +8,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CmisInfrastructure\CmisInfrastructure.csproj" />
+    <ProjectReference Include="..\CmisModel\CmisModel.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\" />
   </ItemGroup>
 </Project>

@@ -1,5 +1,5 @@
 ﻿//
-// ICmisPermissionMapping.cs
+// CmisPermissionMapping.cs
 //
 // Author:
 //       Dannys Janssen
@@ -24,9 +24,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-namespace Cmis.Infrastructure
+namespace Cmis.Model
 {
     using System.Collections.Generic;
+    using Cmis.Infrastructure;
 
 	/// <summary>
 	/// CMIS permission mapping.
@@ -40,18 +41,24 @@ namespace Cmis.Infrastructure
 	/// principal must have on the "source folder" to move an object from 
 	/// that folder into another folder.
 	/// </summary>
-	public interface ICmisPermissionMapping : ICmisExtensionData
+	public class CmisPermissionMapping : ICmisPermissionMapping
     {
 		/// <summary>
-		/// Gets the permission key name.
-        /// </summary>
-        /// <value>The permission key.</value>
-        string Key { get; }
+		/// Gets or sets the permission key name.
+		/// </summary>
+		/// <value>The permission key.</value>
+        public string Key { get; set; }
 
 		/// <summary>
 		/// The name of one or more permissions that the principal MUST have. If more than one permission is speciﬁed, then the principal MUST be allowed to perform the operation if they have ANY of the listed permissions.
 		/// </summary>
 		/// <value>The list of permission names.</value>
-		IList<string> Permission { get; }
+        public IList<string> Permission { get; set; }
+
+		/// <summary>
+		/// Gets or sets the list of CMIS extensions.
+		/// </summary>
+		/// <value>The list of CMIS extensions.</value>
+		public IList<ICmisExtensionElement> Extensions { get; set; }
     }
 }

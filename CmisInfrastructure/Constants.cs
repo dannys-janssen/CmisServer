@@ -31,6 +31,11 @@ namespace Cmis.Infrastructure
     /// </summary>
     public static class Constants
     {
+        /// <summary>
+        /// CMIS version. Currently only 1.1 is supported.
+        /// </summary>
+        public const string CmisVersion = "1.1";
+
         /// <summary>         /// CMIS prefix for naming objects, types etc.         /// </summary>         public const string CmisPrefix = "cmis";
 
         /// <summary>
@@ -411,5 +416,22 @@ namespace Cmis.Infrastructure
         /// CMIS target identifier.
         /// </summary>
         public const string CmisTargetId = CmisPrefix + ":targetId";
+
+        /// <summary>
+        /// The xml namespace for Atom pub (prefix: atom).
+        /// </summary>
+        public const string XmlNamespaceAtomPub = "http://www.w3.org/2005/Atom";
+        /// <summary>
+        /// The xml namespace for CMIS (prefix: cmis).
+        /// </summary>
+        public const string XmlNamespaceCmis = "http://docs.oasis-open.org/ns/cmis/core/200908/";
+        /// <summary>
+        /// The xml namespace for CMIS REST Atom (prefix: cmisra).
+        /// </summary>
+        public const string XmlNamespaceCmisRestAtom = "http://docs.oasis-open.org/ns/cmis/restatom/200908/";
+        /// <summary>
+        /// The xml namespace for applications (prefix: app).
+        /// </summary>
+        public const string XmlNamespaceApp = "http://www.w3.org/2007/app";
     }
 }

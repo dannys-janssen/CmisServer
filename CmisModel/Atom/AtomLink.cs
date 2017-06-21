@@ -31,7 +31,7 @@ namespace Cmis.Model
     /// <summary>
     /// The atom:link element defines a relationship between a web resource (such as a page) and an RSS channel or item (OPTIONAL). The most common use is to identify an HTML representation of an entry in an RSS or Atom feed.
     /// </summary>
-    public class AtomLink
+    public class AtomLink : IAtomLink
     {
         #region Properties
 

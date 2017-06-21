@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CmisInfrastructure", "CmisI
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CmisInterface", "CmisInterface\CmisInterface.csproj", "{C8E96B72-AB98-49C8-8B7B-28AA96CDB376}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CmisService", "CmisService\CmisService.csproj", "{E4E6D06D-8584-4F07-B542-8D5CDF528C6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CmisTests", "CmisTests\CmisTests.csproj", "{D13A7B06-A4A8-4986-995A-7BBC95C856F4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +29,14 @@ Global
 		{C8E96B72-AB98-49C8-8B7B-28AA96CDB376}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8E96B72-AB98-49C8-8B7B-28AA96CDB376}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8E96B72-AB98-49C8-8B7B-28AA96CDB376}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4E6D06D-8584-4F07-B542-8D5CDF528C6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4E6D06D-8584-4F07-B542-8D5CDF528C6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4E6D06D-8584-4F07-B542-8D5CDF528C6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4E6D06D-8584-4F07-B542-8D5CDF528C6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D13A7B06-A4A8-4986-995A-7BBC95C856F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D13A7B06-A4A8-4986-995A-7BBC95C856F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D13A7B06-A4A8-4986-995A-7BBC95C856F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D13A7B06-A4A8-4986-995A-7BBC95C856F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		Policies = $0

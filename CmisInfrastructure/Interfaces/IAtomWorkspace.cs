@@ -1,5 +1,5 @@
 ﻿//
-// IRepositoryService.cs
+// IAtomWorkspace.cs
 //
 // Author:
 //       Dannys Janssen
@@ -27,30 +27,40 @@
 namespace Cmis.Infrastructure
 {
     using System.Collections.Generic;
-    using System.Threading.Tasks;
 
-    /// <summary>
-    /// CMIS Repository service.
-    /// </summary>
-    public interface ICmisRepositoryService
+	/// <summary>
+	/// Atom workspace. Represents an Atom workspace. See https://tools.ietf.org/html/rfc5023
+	/// </summary>
+	public interface IAtomWorkspace
     {
 		/// <summary>
-		/// Returns a list of CMIS repositories available from this CMIS service endpoint.
+		/// Gets or sets the title.
 		/// </summary>
-		/// <returns>The list of repository identifiers and names.</returns>
-		Task<IList<ICmisRepositoryShortInfo>> GetRepositoriesAsync();
+		/// <value>The title.</value>
+		string Title { get; set; }
 
 		/// <summary>
-		/// Returns information about the CMIS repository, the optional capabilities it supports and its access control information if applicable.
+		/// Gets or sets the list of collections attached to this workspace.
 		/// </summary>
-		/// <returns>The repository info.</returns>
-		/// <param name="repositoryId">Repository identifier.</param>
-		Task<ICmisRepositoryInfo> GetRepositoryInfoAsync(string repositoryId);
+		/// <value>The list of collections.</value>
+		IList<IAtomCollection> Collections { get; set; }
 
 		/// <summary>
-		/// Gets the AtomPub Service Document that contains the set of repositories that are available. See http://docs.oasis-open.org/cmis/CMIS/v1.1/os/CMIS-v1.1-os.html#x1-4280007
+		/// Gets or sets the repository info.
 		/// </summary>
-		/// <returns>The Atom service document.</returns>
-		Task<IAtomService> GetServiceDocument();
-    }
+		/// <value>The repository info.</value>
+		ICmisRepositoryInfo RepositoryInfo { get; set; }
+
+		/// <summary>
+		/// Gets or sets the links.
+		/// </summary>
+		/// <value>The links.</value>
+		IList<IAtomLink> Links { get; set; }
+
+		/// <summary>
+		/// Gets or sets the URI templates.
+		/// </summary>
+		/// <value>The URI templates.</value>
+		IList<IAtomUriTemplate> UriTemplates { get; set; }
+	}
 }

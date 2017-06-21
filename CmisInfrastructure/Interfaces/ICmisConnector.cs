@@ -1,5 +1,5 @@
 ﻿//
-// IRepositoryService.cs
+// ICmisConnector.cs
 //
 // Author:
 //       Dannys Janssen
@@ -30,22 +30,28 @@ namespace Cmis.Infrastructure
     using System.Threading.Tasks;
 
     /// <summary>
-    /// CMIS Repository service.
+    /// CMIS connector. Provides members for CMIS services.
     /// </summary>
-    public interface ICmisRepositoryService
+    public interface ICmisConnector : ICmisExtensionData
     {
-		/// <summary>
-		/// Returns a list of CMIS repositories available from this CMIS service endpoint.
-		/// </summary>
-		/// <returns>The list of repository identifiers and names.</returns>
-		Task<IList<ICmisRepositoryShortInfo>> GetRepositoriesAsync();
+        /// <summary>
+        /// Gets or sets the service root URI. 
+        /// </summary>
+        /// <value>The service root.</value>
+        string ServiceRoot { get; set; }
 
-		/// <summary>
-		/// Returns information about the CMIS repository, the optional capabilities it supports and its access control information if applicable.
-		/// </summary>
-		/// <returns>The repository info.</returns>
-		/// <param name="repositoryId">Repository identifier.</param>
-		Task<ICmisRepositoryInfo> GetRepositoryInfoAsync(string repositoryId);
+        /// <summary>
+        /// Gets the list of repositories.
+        /// </summary>
+        /// <returns>The repositories list.</returns>
+        Task<IList<ICmisRepositoryShortInfo>> GetRepositoriesAsync();
+
+        /// <summary>
+        /// Gets the repository info for a specific CMIS repository.
+        /// </summary>
+        /// <returns>The repository info.</returns>
+        /// <param name="repositoryId">Repository identifier.</param>
+        Task<ICmisRepositoryInfo> GetRepositoryInfoAsync(string repositoryId);
 
 		/// <summary>
 		/// Gets the AtomPub Service Document that contains the set of repositories that are available. See http://docs.oasis-open.org/cmis/CMIS/v1.1/os/CMIS-v1.1-os.html#x1-4280007

@@ -1,5 +1,5 @@
 ﻿//
-// IRepositoryService.cs
+// StringCase.cs
 //
 // Author:
 //       Dannys Janssen
@@ -26,31 +26,18 @@
 
 namespace Cmis.Infrastructure
 {
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-
     /// <summary>
-    /// CMIS Repository service.
+    /// String case.
     /// </summary>
-    public interface ICmisRepositoryService
+    public enum StringCase
     {
-		/// <summary>
-		/// Returns a list of CMIS repositories available from this CMIS service endpoint.
-		/// </summary>
-		/// <returns>The list of repository identifiers and names.</returns>
-		Task<IList<ICmisRepositoryShortInfo>> GetRepositoriesAsync();
-
-		/// <summary>
-		/// Returns information about the CMIS repository, the optional capabilities it supports and its access control information if applicable.
-		/// </summary>
-		/// <returns>The repository info.</returns>
-		/// <param name="repositoryId">Repository identifier.</param>
-		Task<ICmisRepositoryInfo> GetRepositoryInfoAsync(string repositoryId);
-
-		/// <summary>
-		/// Gets the AtomPub Service Document that contains the set of repositories that are available. See http://docs.oasis-open.org/cmis/CMIS/v1.1/os/CMIS-v1.1-os.html#x1-4280007
-		/// </summary>
-		/// <returns>The Atom service document.</returns>
-		Task<IAtomService> GetServiceDocument();
+        /// <summary>
+        /// Pascal case.
+        /// </summary>
+        PascalCase,
+        /// <summary>
+        /// Camel case.
+        /// </summary>
+        CamelCase
     }
 }

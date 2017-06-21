@@ -1,5 +1,5 @@
 ﻿//
-// IRepositoryService.cs
+// CmisPermissionDefinition.cs
 //
 // Author:
 //       Dannys Janssen
@@ -24,33 +24,32 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-namespace Cmis.Infrastructure
+namespace Cmis.Model
 {
     using System.Collections.Generic;
-    using System.Threading.Tasks;
+    using Cmis.Infrastructure;
 
     /// <summary>
-    /// CMIS Repository service.
+    /// CMIS permission definition.
     /// </summary>
-    public interface ICmisRepositoryService
+    public class CmisPermissionDefinition : ICmisPermissionDefinition
     {
 		/// <summary>
-		/// Returns a list of CMIS repositories available from this CMIS service endpoint.
+		/// Gets the CMIS permission name.
 		/// </summary>
-		/// <returns>The list of repository identifiers and names.</returns>
-		Task<IList<ICmisRepositoryShortInfo>> GetRepositoriesAsync();
+		/// <value>The CMIS permission name.</value>
+		public string Permission { get; set; }
 
 		/// <summary>
-		/// Returns information about the CMIS repository, the optional capabilities it supports and its access control information if applicable.
+		/// Gets the CMIS permission description.
 		/// </summary>
-		/// <returns>The repository info.</returns>
-		/// <param name="repositoryId">Repository identifier.</param>
-		Task<ICmisRepositoryInfo> GetRepositoryInfoAsync(string repositoryId);
+		/// <value>The CMIS permission description.</value>
+		public string Description { get; set; }
 
 		/// <summary>
-		/// Gets the AtomPub Service Document that contains the set of repositories that are available. See http://docs.oasis-open.org/cmis/CMIS/v1.1/os/CMIS-v1.1-os.html#x1-4280007
+		/// Gets or sets the list of CMIS extensions.
 		/// </summary>
-		/// <returns>The Atom service document.</returns>
-		Task<IAtomService> GetServiceDocument();
+		/// <value>The list of CMIS extensions.</value>
+		public IList<ICmisExtensionElement> Extensions { get; set; }
     }
 }

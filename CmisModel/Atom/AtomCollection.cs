@@ -32,7 +32,7 @@ namespace Cmis.Model
     /// <summary>
     /// Atom collection. See https://tools.ietf.org/html/rfc5023
     /// </summary>
-    public class AtomCollection
+    public class AtomCollection : IAtomCollection
     {
         #region Properties
 
@@ -53,6 +53,12 @@ namespace Cmis.Model
         /// </summary>
         /// <value>The list of accepted media types.</value>
         public IList<CmisMediaType> Accept { get; set; }
+
+        /// <summary>
+        /// Gets or sets the URI.
+        /// </summary>
+        /// <value>The URI.</value>
+        public string Uri { get; set; }
 
         #endregion
     }

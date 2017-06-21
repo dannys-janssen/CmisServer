@@ -27,11 +27,12 @@
 namespace Cmis.Model
 {
     using System.Collections.Generic;
+    using Cmis.Infrastructure;
 
     /// <summary>
-    /// Atom service class. Represents an Atom service document. See https://tools.ietf.org/html/rfc5023
+    /// Atom service. Represents an Atom service document. See https://tools.ietf.org/html/rfc5023
     /// </summary>
-    public class AtomService
+    public class AtomService : IAtomService
     {
         #region Properties
 
@@ -39,7 +40,7 @@ namespace Cmis.Model
         /// Gets or sets the attached list of workspaces.
         /// </summary>
         /// <value>The list of workspaces.</value>
-        IList<AtomWorkspace> Workspaces { get; set; }
+        public IList<IAtomWorkspace> Workspaces { get; set; }
 
         #endregion
     }

@@ -1,5 +1,5 @@
 ﻿//
-// IRepositoryService.cs
+// IAtomService.cs
 //
 // Author:
 //       Dannys Janssen
@@ -27,30 +27,16 @@
 namespace Cmis.Infrastructure
 {
     using System.Collections.Generic;
-    using System.Threading.Tasks;
 
-    /// <summary>
-    /// CMIS Repository service.
-    /// </summary>
-    public interface ICmisRepositoryService
+	/// <summary>
+	/// Atom service. Represents an Atom service document. See https://tools.ietf.org/html/rfc5023
+	/// </summary>
+	public interface IAtomService
     {
 		/// <summary>
-		/// Returns a list of CMIS repositories available from this CMIS service endpoint.
+		/// Gets or sets the attached list of workspaces.
 		/// </summary>
-		/// <returns>The list of repository identifiers and names.</returns>
-		Task<IList<ICmisRepositoryShortInfo>> GetRepositoriesAsync();
-
-		/// <summary>
-		/// Returns information about the CMIS repository, the optional capabilities it supports and its access control information if applicable.
-		/// </summary>
-		/// <returns>The repository info.</returns>
-		/// <param name="repositoryId">Repository identifier.</param>
-		Task<ICmisRepositoryInfo> GetRepositoryInfoAsync(string repositoryId);
-
-		/// <summary>
-		/// Gets the AtomPub Service Document that contains the set of repositories that are available. See http://docs.oasis-open.org/cmis/CMIS/v1.1/os/CMIS-v1.1-os.html#x1-4280007
-		/// </summary>
-		/// <returns>The Atom service document.</returns>
-		Task<IAtomService> GetServiceDocument();
+		/// <value>The list of workspaces.</value>
+		IList<IAtomWorkspace> Workspaces { get; set; }
     }
 }

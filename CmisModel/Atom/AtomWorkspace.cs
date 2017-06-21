@@ -30,9 +30,9 @@ namespace Cmis.Model
     using Cmis.Infrastructure;
 
     /// <summary>
-    /// Atom workspace class. Represents an Atom workspace. See https://tools.ietf.org/html/rfc5023
+    /// Atom workspace. Represents an Atom workspace. See https://tools.ietf.org/html/rfc5023
     /// </summary>
-    public class AtomWorkspace
+    public class AtomWorkspace : IAtomWorkspace
     {
         #region Properties
 
@@ -46,7 +46,7 @@ namespace Cmis.Model
         /// Gets or sets the list of collections attached to this workspace.
         /// </summary>
         /// <value>The list of collections.</value>
-        public IList<AtomCollection> Collections { get; set; }
+        public IList<IAtomCollection> Collections { get; set; }
 
         /// <summary>
         /// Gets or sets the repository info.
@@ -58,13 +58,13 @@ namespace Cmis.Model
         /// Gets or sets the links.
         /// </summary>
         /// <value>The links.</value>
-        public IList<AtomLink> Links { get; set; }
+        public IList<IAtomLink> Links { get; set; }
 
         /// <summary>
         /// Gets or sets the URI templates.
         /// </summary>
         /// <value>The URI templates.</value>
-        public IList<AtomUriTemplate> UriTemplates { get; set; }
+        public IList<IAtomUriTemplate> UriTemplates { get; set; }
 
         #endregion
     }

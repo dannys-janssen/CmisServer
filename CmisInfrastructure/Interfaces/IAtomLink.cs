@@ -1,5 +1,5 @@
 ﻿//
-// IRepositoryService.cs
+// IAtomLink.cs
 //
 // Author:
 //       Dannys Janssen
@@ -24,33 +24,42 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+
 namespace Cmis.Infrastructure
 {
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-
-    /// <summary>
-    /// CMIS Repository service.
-    /// </summary>
-    public interface ICmisRepositoryService
+	/// <summary>
+	/// The atom:link element defines a relationship between a web resource (such as a page) and an RSS channel or item (OPTIONAL). The most common use is to identify an HTML representation of an entry in an RSS or Atom feed.
+	/// </summary>
+	public interface IAtomLink
     {
 		/// <summary>
-		/// Returns a list of CMIS repositories available from this CMIS service endpoint.
+		/// Gets or sets the title.
 		/// </summary>
-		/// <returns>The list of repository identifiers and names.</returns>
-		Task<IList<ICmisRepositoryShortInfo>> GetRepositoriesAsync();
+		/// <value>The title.</value>
+		string Title { get; set; }
 
 		/// <summary>
-		/// Returns information about the CMIS repository, the optional capabilities it supports and its access control information if applicable.
+		/// Gets or sets the URI of the related resource (href).
 		/// </summary>
-		/// <returns>The repository info.</returns>
-		/// <param name="repositoryId">Repository identifier.</param>
-		Task<ICmisRepositoryInfo> GetRepositoryInfoAsync(string repositoryId);
+		/// <value>The href.</value>
+		string Reference { get; set; }
 
 		/// <summary>
-		/// Gets the AtomPub Service Document that contains the set of repositories that are available. See http://docs.oasis-open.org/cmis/CMIS/v1.1/os/CMIS-v1.1-os.html#x1-4280007
+		/// Gets or sets the relation (rel).
 		/// </summary>
-		/// <returns>The Atom service document.</returns>
-		Task<IAtomService> GetServiceDocument();
+		/// <value>The relation.</value>
+		string Relation { get; set; }
+
+		/// <summary>
+		/// Gets or sets the identifier.
+		/// </summary>
+		/// <value>The identifier.</value>
+		string Id { get; set; }
+
+		/// <summary>
+		/// Gets or sets the CMIS medai type (type).
+		/// </summary>
+		/// <value>The CMIS media type.</value>
+		CmisMediaType MediaType { get; set; }
     }
 }

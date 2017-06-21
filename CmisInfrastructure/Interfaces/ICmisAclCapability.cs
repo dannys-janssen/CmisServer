@@ -49,12 +49,12 @@ namespace Cmis.Infrastructure
 		/// Gets the list of repository-speciﬁc permissions the repository supports for managing ACEs.
 		/// </summary>
 		/// <value>The permissions.</value>
-		IList<CmisBasicPermission?> Permissions { get; }
+        IList<ICmisPermissionDefinition> Permissions { get; }
 
 		/// <summary>
 		/// Gets the list of mappings for the CMIS basic permissions to allowable actions.
 		/// </summary>
 		/// <value>The list of permission mappings.</value>
-		IList<ICmisPermissionMapping> Mappings { get; }
+		IList<ICmisPermissionMapping> PermissionMapping { get; }
     }
 }

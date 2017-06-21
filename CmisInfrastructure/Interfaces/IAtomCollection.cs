@@ -1,5 +1,5 @@
 ﻿//
-// IRepositoryService.cs
+// IAtomCollection.cs
 //
 // Author:
 //       Dannys Janssen
@@ -27,30 +27,34 @@
 namespace Cmis.Infrastructure
 {
     using System.Collections.Generic;
-    using System.Threading.Tasks;
 
-    /// <summary>
-    /// CMIS Repository service.
-    /// </summary>
-    public interface ICmisRepositoryService
+	/// <summary>
+	/// Atom collection. See https://tools.ietf.org/html/rfc5023
+	/// </summary>
+	public interface IAtomCollection
     {
 		/// <summary>
-		/// Returns a list of CMIS repositories available from this CMIS service endpoint.
+		/// Gets or sets the title.
 		/// </summary>
-		/// <returns>The list of repository identifiers and names.</returns>
-		Task<IList<ICmisRepositoryShortInfo>> GetRepositoriesAsync();
+		/// <value>The title.</value>
+		string Title { get; set; }
 
 		/// <summary>
-		/// Returns information about the CMIS repository, the optional capabilities it supports and its access control information if applicable.
+		/// Gets or sets the type of the collection.
 		/// </summary>
-		/// <returns>The repository info.</returns>
-		/// <param name="repositoryId">Repository identifier.</param>
-		Task<ICmisRepositoryInfo> GetRepositoryInfoAsync(string repositoryId);
+		/// <value>The type of the collection.</value>
+		CmisCollectionType CollectionType { get; set; }
 
 		/// <summary>
-		/// Gets the AtomPub Service Document that contains the set of repositories that are available. See http://docs.oasis-open.org/cmis/CMIS/v1.1/os/CMIS-v1.1-os.html#x1-4280007
+		/// Gets or sets the accepted media types.
 		/// </summary>
-		/// <returns>The Atom service document.</returns>
-		Task<IAtomService> GetServiceDocument();
+		/// <value>The list of accepted media types.</value>
+		IList<CmisMediaType> Accept { get; set; }
+
+		/// <summary>
+		/// Gets or sets the URI.
+		/// </summary>
+		/// <value>The URI.</value>
+		string Uri { get; set; }
     }
 }

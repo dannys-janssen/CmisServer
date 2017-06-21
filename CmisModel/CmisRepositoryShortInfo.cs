@@ -1,5 +1,5 @@
 ﻿//
-// IRepositoryService.cs
+// CmisRepositoryShortInfo.cs
 //
 // Author:
 //       Dannys Janssen
@@ -24,33 +24,45 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-namespace Cmis.Infrastructure
+namespace Cmis.Model
 {
+    using System;
     using System.Collections.Generic;
-    using System.Threading.Tasks;
+    using Cmis.Infrastructure;
 
-    /// <summary>
-    /// CMIS Repository service.
-    /// </summary>
-    public interface ICmisRepositoryService
+	/// <summary>
+	/// CMIS repository info containing only identifier and name.
+	/// </summary>
+	public class CmisRepositoryShortInfo : ICmisRepositoryShortInfo
     {
 		/// <summary>
-		/// Returns a list of CMIS repositories available from this CMIS service endpoint.
+		/// Gets the CMIS repository identifier.
 		/// </summary>
-		/// <returns>The list of repository identifiers and names.</returns>
-		Task<IList<ICmisRepositoryShortInfo>> GetRepositoriesAsync();
+		/// <value>The identifier.</value>
+		public string RepositoryId { get; set; }
 
 		/// <summary>
-		/// Returns information about the CMIS repository, the optional capabilities it supports and its access control information if applicable.
+		/// Gets the CMIS repository display name.
 		/// </summary>
-		/// <returns>The repository info.</returns>
-		/// <param name="repositoryId">Repository identifier.</param>
-		Task<ICmisRepositoryInfo> GetRepositoryInfoAsync(string repositoryId);
+		/// <value>The display name.</value>
+		public string RepositoryName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the repository URL.
+        /// </summary>
+        /// <value>The repository URL.</value>
+        public string RepositoryUrl { get; set; }
 
 		/// <summary>
-		/// Gets the AtomPub Service Document that contains the set of repositories that are available. See http://docs.oasis-open.org/cmis/CMIS/v1.1/os/CMIS-v1.1-os.html#x1-4280007
+		/// Gets the CMIS repository URL.
 		/// </summary>
-		/// <returns>The Atom service document.</returns>
-		Task<IAtomService> GetServiceDocument();
+		/// <value>The repository URL.</value>
+		public string RootFolderUrl { get; set; }
+
+		/// <summary>
+		/// Gets or sets the list of CMIS extensions.
+		/// </summary>
+		/// <value>The list of CMIS extensions.</value>
+		public IList<ICmisExtensionElement> Extensions { get; set; }
     }
 }
