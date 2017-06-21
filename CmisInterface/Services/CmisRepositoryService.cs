@@ -38,10 +38,10 @@ namespace Cmis.Interface
         #region Properties
 
         /// <summary>
-        /// Gets the configuration store.
+        /// Gets the CMIS connector instance.
         /// </summary>
-        /// <value>The configuration store.</value>
-        public ICmisConnector ConfigurationStore { get; private set; }
+        /// <value>The CMIS connector instance.</value>
+        public ICmisConnector Connector { get; private set; }
 
         #endregion
 
@@ -50,10 +50,10 @@ namespace Cmis.Interface
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Cmis.Interface.CmisRepositoryService"/> class.
         /// </summary>
-        /// <param name="configurationStore">The Configuration store.</param>
-        public CmisRepositoryService(ICmisConnector configurationStore)
+        /// <param name="connector">The CMIS connector isntance.</param>
+        public CmisRepositoryService(ICmisConnector connector)
         {
-            ConfigurationStore = configurationStore;
+            Connector = connector;
         }
 
         #endregion
@@ -66,7 +66,7 @@ namespace Cmis.Interface
         /// <returns>The list of repository identifiers and names.</returns>
         public async Task<IList<ICmisRepositoryShortInfo>> GetRepositoriesAsync()
         {
-            return await ConfigurationStore.GetRepositoriesAsync();
+            return await Connector.GetRepositoriesAsync();
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace Cmis.Interface
         /// <param name="repositoryId">Repository identifier.</param>
         public async Task<ICmisRepositoryInfo> GetRepositoryInfoAsync(string repositoryId)
         {
-            return await ConfigurationStore.GetRepositoryInfoAsync(repositoryId);
+            return await Connector.GetRepositoryInfoAsync(repositoryId);
         }
 
 		/// <summary>
@@ -85,7 +85,7 @@ namespace Cmis.Interface
 		/// <returns>The Atom service document.</returns>
 		public async Task<IAtomService> GetServiceDocument()
         {
-            return await ConfigurationStore.GetServiceDocument();
+            return await Connector.GetServiceDocument();
         }
 
         #endregion
