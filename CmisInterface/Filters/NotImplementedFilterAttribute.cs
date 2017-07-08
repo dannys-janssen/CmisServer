@@ -1,5 +1,5 @@
 ﻿//
-// IRepositoryService.cs
+// NotImplementedFilterAttribute.cs
 //
 // Author:
 //       Dannys Janssen
@@ -24,33 +24,30 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-namespace Cmis.Infrastructure
-{
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
+using System;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 
+namespace Cmis.Interface
+{
     /// <summary>
-    /// CMIS Repository service.
+    /// Not implemented filter attribute. 
+    /// Handles <see cref="NotImplementedException"/> and returns a 501 HTTP status code (not implemented).
     /// </summary>
-    public interface ICmisRepositoryService
+    public class NotImplementedFilterAttribute : ExceptionFilterAttribute
     {
 		/// <summary>
-		/// Returns a list of CMIS repositories available from this CMIS service endpoint.
+		/// Runs when an unhandled exception occurs during the execution of an action.
+		/// Handles only <see cref="NotImplementedException"/> and returns a 501 HTTP status code (not implemented).
 		/// </summary>
-		/// <returns>The list of repository identifiers and names.</returns>
-		Task<IList<ICmisRepositoryShortInfo>> GetRepositoriesAsync();
-
-		/// <summary>
-		/// Returns information about the CMIS repository, the optional capabilities it supports and its access control information if applicable.
-		/// </summary>
-		/// <returns>The repository info.</returns>
-		/// <param name="repositoryId">Repository identifier.</param>
-		Task<ICmisRepositoryInfo> GetRepositoryInfoAsync(string repositoryId);
-
-		/// <summary>
-		/// Gets the AtomPub Service Document that contains the set of repositories that are available. See http://docs.oasis-open.org/cmis/CMIS/v1.1/os/CMIS-v1.1-os.html#x1-4280007
-		/// </summary>
-		/// <returns>The Atom service document.</returns>
-		Task<IAtomService> GetServiceDocumentAsync();
+		/// <param name="context">Exception context.</param>
+		public override void OnException(ExceptionContext context)
+        {
+			if (context.Exception is NotImplementedException)
+			{
+                context.Result = new StatusCodeResult(StatusCodes.Status501NotImplemented);
+			}
+        }
     }
 }

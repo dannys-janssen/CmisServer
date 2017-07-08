@@ -263,6 +263,11 @@ namespace Cmis.Infrastructure
 		public const string CmisMediaTypeAcl = "application/cmisacl+xml";
 
         /// <summary>
+        /// CMIS media type atom.
+        /// </summary>
+        public const string CmisMediaTypeAtom = "application/cmisatom+xml";
+
+        /// <summary>
         /// The CMIS URI template type for object by identifier query.
         /// </summary>
         public const string CmisUriTemplateTypeObjectById = "objectbyid";
@@ -416,6 +421,16 @@ namespace Cmis.Infrastructure
         /// CMIS target identifier.
         /// </summary>
         public const string CmisTargetId = CmisPrefix + ":targetId";
+
+        /// <summary>
+        /// Connector class configuration setting name.
+        /// </summary>
+        public const string ConnectorClassSetting = "ConnectorClass";
+
+        /// <summary>
+        /// Mockup connector class that provides dummy results. Can be used for testing.
+        /// </summary>
+        public const string MockupConnectorClass = "Cmis.Interface.CmisMockupConnector, CmisInterface";
 
         /// <summary>
         /// The xml namespace for Atom pub (prefix: atom).

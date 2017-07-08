@@ -18,11 +18,12 @@
     <DocumentationFile>bin\Debug\netstandard1.4\CmisInfrastructure.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NuGet.Build.Packaging" Version="0.1.157-dev" />
+    <PackageReference Include="NuGet.Build.Packaging" Version="0.1.324" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
     <Folder Include="Interfaces\" />
     <Folder Include="Enums\" />
+    <Folder Include="Exceptions\" />
   </ItemGroup>
 </Project>

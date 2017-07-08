@@ -68,29 +68,30 @@ namespace Cmis.Service
 
             // initialize local application services from configuration
             var cmisConfigSection = Configuration.GetSection("Cmis");
-            var configurationStoreTypeString = cmisConfigSection != null ? cmisConfigSection.GetValue<string>("ConfigurationStoreClass") : "Cmis.Interface.CmisMockupConnector, CmisInterface";
-            var configurationStoreType = !string.IsNullOrWhiteSpace(configurationStoreTypeString) ? Type.GetType(configurationStoreTypeString) : Type.GetType("Cmis.Interface.CmisMockupConnector, CmisInterface");
+            var connectorClassString = cmisConfigSection != null ? cmisConfigSection.GetValue<string>(Constants.ConnectorClassSetting) : Constants.MockupConnectorClass;
+            var connectorType = !string.IsNullOrWhiteSpace(connectorClassString) ? Type.GetType(connectorClassString) : Type.GetType(Constants.MockupConnectorClass);
 
 			// Add application services
-			if (configurationStoreType != null)
+			if (connectorType != null)
             {
-                services.AddSingleton(typeof(ICmisConnector), configurationStoreType);
+                // add connector from configuration
+                services.AddSingleton(typeof(ICmisConnector), connectorType);
 			}
             else
             {
-                // Fallback, when no configuration store 
+                // Fallback, when no connector
                 services.AddSingleton(typeof(ICmisConnector), typeof(CmisMockupConnector));
             }
         }
 
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-#pragma warning disable RECS0154 // Parameter is never used
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
-#pragma warning restore RECS0154 // Parameter is never used
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
+
+            if (env.IsDevelopment())
+                loggerFactory.AddDebug();
 
             app.UseMvc();
         }

@@ -33,6 +33,7 @@ namespace Cmis.Service
 	using Microsoft.AspNetCore.Mvc;
 	using Cmis.Interface;
 	using Cmis.Infrastructure;
+    using Microsoft.Extensions.Logging;
 
     [Route("api/cmis/1.1/atom")]
     public class CmisAtomServiceController : Controller
@@ -40,15 +41,21 @@ namespace Cmis.Service
 		/// <summary>
 		/// The configuration store.
 		/// </summary>
-		readonly ICmisConnector _configurationstore;
+        readonly ICmisConnector _connector;
+
+        /// <summary>
+        /// The logger.
+        /// </summary>
+        readonly ILogger<CmisAtomServiceController> _logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Cmis.Service.CmisAtomServiceController"/> class.
         /// </summary>
-        /// <param name="configurationStore">Configuration store.</param>
-		public CmisAtomServiceController(ICmisConnector configurationStore)
+        /// <param name="connector">CMIS connector instance.</param>
+        public CmisAtomServiceController(ICmisConnector connector, ILogger<CmisAtomServiceController> logger)
 		{
-			_configurationstore = configurationStore;
+            _connector = connector;
+            _logger = logger;
 		}
 
 		/// <summary>
@@ -58,9 +65,9 @@ namespace Cmis.Service
 		public async Task<IActionResult> GetRepositories()
 		{
 			var serviceRoot = $"{Request.Scheme}://{Request.Host}";
-			_configurationstore.ServiceRoot = serviceRoot;
+			_connector.ServiceRoot = serviceRoot;
 
-            var result = await _configurationstore.GetServiceDocument();
+            var result = await _connector.GetServiceDocument();
 
             var converter = new AtomServiceXDocumentConverter();
 

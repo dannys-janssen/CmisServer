@@ -182,7 +182,7 @@ namespace Cmis.Interface
                 {
                     new AtomWorkspace
                     {
-                        Title = "FI",
+                        Title = repositoryInfo.RepositoryId,
                         Collections = new List<IAtomCollection>
                         {
                             new AtomCollection
@@ -192,8 +192,59 @@ namespace Cmis.Interface
                                 Title = "Root Collection",
                                 Accept = new List<CmisMediaType>
                                 {
-                                    CmisMediaType.Entry
+                                    CmisMediaType.Entry,
+                                    CmisMediaType.CmisAtom
                                 }
+                            },
+                            new AtomCollection
+                            {
+                                Uri = $"{ServiceRoot}/api/{repositoryInfo.RepositoryId}/cmis/versions/{Constants.CmisVersion}/atom/types",
+                                CollectionType = CmisCollectionType.Types,
+                                Title = "Types Collection",
+                                Accept = new List<CmisMediaType>
+                                {
+                                    
+                                }
+                            },
+                            new AtomCollection
+                            {
+                                Uri = $"{ServiceRoot}/api/{repositoryInfo.RepositoryId}/cmis/versions/{Constants.CmisVersion}/atom/query",
+                                CollectionType = CmisCollectionType.Query,
+                                Title = "Query Collection",
+                                Accept = new List<CmisMediaType>
+                                {
+                                    CmisMediaType.Query
+                                }
+                            },
+                            new AtomCollection
+                            {
+                                Uri = $"{ServiceRoot}/api/{repositoryInfo.RepositoryId}/cmis/versions/{Constants.CmisVersion}/atom/checkedout",
+                                CollectionType = CmisCollectionType.CheckedOut,
+                                Title = "Checked Out Collection",
+								Accept = new List<CmisMediaType>
+								{
+                                    CmisMediaType.CmisAtom
+								}
+                            },
+                            new AtomCollection
+                            {
+                                Uri = $"{ServiceRoot}/api/{repositoryInfo.RepositoryId}/cmis/versions/{Constants.CmisVersion}/atom/unfiled",
+                                CollectionType = CmisCollectionType.Unfiled,
+                                Title = "Unfiled Collection",
+								Accept = new List<CmisMediaType>
+								{
+									CmisMediaType.CmisAtom
+								}
+                            },
+                            new AtomCollection
+                            {
+                                Uri = $"{ServiceRoot}/api/{repositoryInfo.RepositoryId}/cmis/versions/{Constants.CmisVersion}/atom/update",
+                                CollectionType = CmisCollectionType.Update,
+                                Title = "Bulk Update Collection",
+								Accept = new List<CmisMediaType>
+								{
+									CmisMediaType.CmisAtom
+								}
                             }
                         },
                         RepositoryInfo = repositoryInfo,

@@ -75,6 +75,11 @@ namespace Cmis.Infrastructure
 		/// CMIS ACL media type. application/cmisacl+xml
 		/// </summary>
         [CmisName(Constants.CmisMediaTypeAcl)]
-		Acl
+		Acl,
+		/// <summary>
+		/// CMIS Atom media type. application/cmisatom+xml
+		/// </summary>
+		[CmisName(Constants.CmisMediaTypeAtom)]
+		CmisAtom
     }
 }

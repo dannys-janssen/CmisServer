@@ -1,5 +1,5 @@
 ﻿//
-// IRepositoryService.cs
+// ValidateModelFilterAttribute.cs
 //
 // Author:
 //       Dannys Janssen
@@ -24,33 +24,27 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-namespace Cmis.Infrastructure
-{
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 
-    /// <summary>
-    /// CMIS Repository service.
-    /// </summary>
-    public interface ICmisRepositoryService
+namespace Cmis.Interface
+{
+	/// <summary>
+	/// Validate model action filter attribute. 
+    /// Validates the <see cref="Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary"/>.
+	/// </summary>
+	public class ValidateModelFilterAttribute : ActionFilterAttribute
     {
 		/// <summary>
-		/// Returns a list of CMIS repositories available from this CMIS service endpoint.
+		/// Validates the Validates the <see cref="Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary"/> of the <paramref name="context"/>.
 		/// </summary>
-		/// <returns>The list of repository identifiers and names.</returns>
-		Task<IList<ICmisRepositoryShortInfo>> GetRepositoriesAsync();
-
-		/// <summary>
-		/// Returns information about the CMIS repository, the optional capabilities it supports and its access control information if applicable.
-		/// </summary>
-		/// <returns>The repository info.</returns>
-		/// <param name="repositoryId">Repository identifier.</param>
-		Task<ICmisRepositoryInfo> GetRepositoryInfoAsync(string repositoryId);
-
-		/// <summary>
-		/// Gets the AtomPub Service Document that contains the set of repositories that are available. See http://docs.oasis-open.org/cmis/CMIS/v1.1/os/CMIS-v1.1-os.html#x1-4280007
-		/// </summary>
-		/// <returns>The Atom service document.</returns>
-		Task<IAtomService> GetServiceDocumentAsync();
+		/// <param name="context">The <see cref="ActionExecutingContext"/> of the executing action.</param>
+		public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            if(!context.ModelState.IsValid)
+            {
+                context.Result = new BadRequestObjectResult(context.ModelState);
+            }
+        }
     }
 }
