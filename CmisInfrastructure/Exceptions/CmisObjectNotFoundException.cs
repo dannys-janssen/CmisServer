@@ -67,20 +67,20 @@ namespace Cmis.Infrastructure
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Cmis.Infrastructure.CmisObjectNotFoundException"/> class.
         /// </summary>
-        public CmisObjectNotFoundException() { }
+        public CmisObjectNotFoundException() { Code = 404L; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Cmis.Infrastructure.CmisObjectNotFoundException"/> class.
         /// </summary>
         /// <param name="message">Message.</param>
-        public CmisObjectNotFoundException(string message) : base(message) { }
+        public CmisObjectNotFoundException(string message) : base(message) { Code = 404L; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Cmis.Infrastructure.CmisObjectNotFoundException"/> class.
         /// </summary>
         /// <param name="message">Message.</param>
         /// <param name="innerException">Inner exception.</param>
-        public CmisObjectNotFoundException(string message, Exception innerException) : base(message, innerException) { }
+        public CmisObjectNotFoundException(string message, Exception innerException) : base(message, innerException) { Code = 404L; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Cmis.Infrastructure.CmisObjectNotFoundException"/> class.
@@ -89,7 +89,7 @@ namespace Cmis.Infrastructure
         /// <param name="innerException">Inner exception.</param>
         /// <param name="code">Exception code.</param>
         /// <param name="content">Exception content.</param>
-        public CmisObjectNotFoundException(string message, Exception innerException, long? code, string content) : base(message, innerException, code, content) { }
+        public CmisObjectNotFoundException(string message, Exception innerException, long? code, string content) : base(message, innerException, code, content) { Code = code ?? 404L; }
 
         #endregion
     }

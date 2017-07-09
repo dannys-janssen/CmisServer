@@ -67,20 +67,20 @@ namespace Cmis.Infrastructure
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Cmis.Infrastructure.CmisPermissionDeniedException"/> class.
         /// </summary>
-        public CmisPermissionDeniedException() { }
+        public CmisPermissionDeniedException() { Code = 403L; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Cmis.Infrastructure.CmisPermissionDeniedException"/> class.
         /// </summary>
         /// <param name="message">Message.</param>
-        public CmisPermissionDeniedException(string message) : base(message) { }
+        public CmisPermissionDeniedException(string message) : base(message) { Code = 403L; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Cmis.Infrastructure.CmisPermissionDeniedException"/> class.
         /// </summary>
         /// <param name="message">Message.</param>
         /// <param name="innerException">Inner exception.</param>
-        public CmisPermissionDeniedException(string message, Exception innerException) : base(message, innerException) { }
+        public CmisPermissionDeniedException(string message, Exception innerException) : base(message, innerException) { Code = 403L; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Cmis.Infrastructure.CmisPermissionDeniedException"/> class.
@@ -89,7 +89,7 @@ namespace Cmis.Infrastructure
         /// <param name="innerException">Inner exception.</param>
         /// <param name="code">Exception code.</param>
         /// <param name="content">Exception content.</param>
-        public CmisPermissionDeniedException(string message, Exception innerException, long? code, string content) : base(message, innerException, code, content) { }
+        public CmisPermissionDeniedException(string message, Exception innerException, long? code, string content) : base(message, innerException, code, content) { Code = code ?? 403L; }
 
         #endregion
     }

@@ -67,20 +67,20 @@ namespace Cmis.Infrastructure
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Cmis.Infrastructure.CmisVersioningException"/> class.
         /// </summary>
-        public CmisVersioningException() { }
+        public CmisVersioningException() { Code = 409L; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Cmis.Infrastructure.CmisVersioningException"/> class.
         /// </summary>
         /// <param name="message">Message.</param>
-        public CmisVersioningException(string message) : base(message) { }
+        public CmisVersioningException(string message) : base(message) { Code = 409L; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Cmis.Infrastructure.CmisVersioningException"/> class.
         /// </summary>
         /// <param name="message">Message.</param>
         /// <param name="innerException">Inner exception.</param>
-        public CmisVersioningException(string message, Exception innerException) : base(message, innerException) { }
+        public CmisVersioningException(string message, Exception innerException) : base(message, innerException) { Code = 409L; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Cmis.Infrastructure.CmisVersioningException"/> class.
@@ -89,7 +89,7 @@ namespace Cmis.Infrastructure
         /// <param name="innerException">Inner exception.</param>
         /// <param name="code">Exception code.</param>
         /// <param name="content">Exception content.</param>
-        public CmisVersioningException(string message, Exception innerException, long? code, string content) : base(message, innerException, code, content) { }
+        public CmisVersioningException(string message, Exception innerException, long? code, string content) : base(message, innerException, code, content) { Code = code ?? 409L; }
 
         #endregion
     }

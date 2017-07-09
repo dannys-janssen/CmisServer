@@ -67,20 +67,20 @@ namespace Cmis.Infrastructure
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Cmis.Infrastructure.CmisNotSupportedException"/> class.
         /// </summary>
-        public CmisNotSupportedException() { }
+        public CmisNotSupportedException() { Code = 405L; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Cmis.Infrastructure.CmisNotSupportedException"/> class.
         /// </summary>
         /// <param name="message">Message.</param>
-        public CmisNotSupportedException(string message) : base(message) { }
+        public CmisNotSupportedException(string message) : base(message) { Code = 405L; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Cmis.Infrastructure.CmisNotSupportedException"/> class.
         /// </summary>
         /// <param name="message">Message.</param>
         /// <param name="innerException">Inner exception.</param>
-        public CmisNotSupportedException(string message, Exception innerException) : base(message, innerException) { }
+        public CmisNotSupportedException(string message, Exception innerException) : base(message, innerException) { Code = 405L; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Cmis.Infrastructure.CmisNotSupportedException"/> class.
@@ -89,7 +89,7 @@ namespace Cmis.Infrastructure
         /// <param name="innerException">Inner exception.</param>
         /// <param name="code">Exception code.</param>
         /// <param name="content">Exception content.</param>
-        public CmisNotSupportedException(string message, Exception innerException, long? code, string content) : base(message, innerException, code, content) { }
+        public CmisNotSupportedException(string message, Exception innerException, long? code, string content) : base(message, innerException, code, content) { Code = code ?? 405L; }
 
         #endregion
     }

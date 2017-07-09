@@ -67,20 +67,20 @@ namespace Cmis.Infrastructure
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Cmis.Infrastructure.CmisFilterNotValidException"/> class.
         /// </summary>
-        public CmisFilterNotValidException() { }
+        public CmisFilterNotValidException() { Code = 400L; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Cmis.Infrastructure.CmisFilterNotValidException"/> class.
         /// </summary>
         /// <param name="message">Message.</param>
-        public CmisFilterNotValidException(string message) : base(message) { }
+        public CmisFilterNotValidException(string message) : base(message) { Code = 400L; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Cmis.Infrastructure.CmisFilterNotValidException"/> class.
         /// </summary>
         /// <param name="message">Message.</param>
         /// <param name="innerException">Inner exception.</param>
-        public CmisFilterNotValidException(string message, Exception innerException) : base(message, innerException) { }
+        public CmisFilterNotValidException(string message, Exception innerException) : base(message, innerException) { Code = 400L; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Cmis.Infrastructure.CmisFilterNotValidException"/> class.
@@ -89,7 +89,7 @@ namespace Cmis.Infrastructure
         /// <param name="innerException">Inner exception.</param>
         /// <param name="code">Exception code.</param>
         /// <param name="content">Exception content.</param>
-        public CmisFilterNotValidException(string message, Exception innerException, long? code, string content) : base(message, innerException, code, content) { }
+        public CmisFilterNotValidException(string message, Exception innerException, long? code, string content) : base(message, innerException, code, content) { Code = code ?? 400L; }
 
         #endregion
     }

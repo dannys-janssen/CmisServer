@@ -67,20 +67,20 @@ namespace Cmis.Infrastructure
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Cmis.Infrastructure.CmisRuntimeException"/> class.
         /// </summary>
-        public CmisRuntimeException() { }
+        public CmisRuntimeException() { Code = 500L; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Cmis.Infrastructure.CmisRuntimeException"/> class.
         /// </summary>
         /// <param name="message">Message.</param>
-        public CmisRuntimeException(string message) : base(message) { }
+        public CmisRuntimeException(string message) : base(message) {Code = 500L; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Cmis.Infrastructure.CmisRuntimeException"/> class.
         /// </summary>
         /// <param name="message">Message.</param>
         /// <param name="innerException">Inner exception.</param>
-        public CmisRuntimeException(string message, Exception innerException) : base(message, innerException) { }
+        public CmisRuntimeException(string message, Exception innerException) : base(message, innerException) { Code = 500L; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Cmis.Infrastructure.CmisRuntimeException"/> class.
@@ -89,7 +89,7 @@ namespace Cmis.Infrastructure
         /// <param name="innerException">Inner exception.</param>
         /// <param name="code">Exception code.</param>
         /// <param name="content">Exception content.</param>
-        public CmisRuntimeException(string message, Exception innerException, long? code, string content) : base(message, innerException, code, content) { }
+        public CmisRuntimeException(string message, Exception innerException, long? code, string content) : base(message, innerException, code, content) { Code = code ?? 500L; }
 
         #endregion
     }

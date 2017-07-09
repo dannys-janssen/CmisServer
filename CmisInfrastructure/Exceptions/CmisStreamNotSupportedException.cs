@@ -67,20 +67,20 @@ namespace Cmis.Infrastructure
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Cmis.Infrastructure.CmisStreamNotSupportedException"/> class.
         /// </summary>
-        public CmisStreamNotSupportedException() { }
+        public CmisStreamNotSupportedException() { Code = 403L; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Cmis.Infrastructure.CmisStreamNotSupportedException"/> class.
         /// </summary>
         /// <param name="message">Message.</param>
-        public CmisStreamNotSupportedException(string message) : base(message) { }
+        public CmisStreamNotSupportedException(string message) : base(message) { Code = 403L; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Cmis.Infrastructure.CmisStreamNotSupportedException"/> class.
         /// </summary>
         /// <param name="message">Message.</param>
         /// <param name="innerException">Inner exception.</param>
-        public CmisStreamNotSupportedException(string message, Exception innerException) : base(message, innerException) { }
+        public CmisStreamNotSupportedException(string message, Exception innerException) : base(message, innerException) { Code = 403L; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Cmis.Infrastructure.CmisStreamNotSupportedException"/> class.
@@ -89,7 +89,7 @@ namespace Cmis.Infrastructure
         /// <param name="innerException">Inner exception.</param>
         /// <param name="code">Exception code.</param>
         /// <param name="content">Exception content.</param>
-        public CmisStreamNotSupportedException(string message, Exception innerException, long? code, string content) : base(message, innerException, code, content) { }
+        public CmisStreamNotSupportedException(string message, Exception innerException, long? code, string content) : base(message, innerException, code, content) { Code = code ?? 403L; }
 
         #endregion
     }

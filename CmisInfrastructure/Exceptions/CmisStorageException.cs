@@ -67,20 +67,20 @@ namespace Cmis.Infrastructure
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Cmis.Infrastructure.CmisStorageException"/> class.
         /// </summary>
-        public CmisStorageException() { }
+        public CmisStorageException() { Code = 500L; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Cmis.Infrastructure.CmisStorageException"/> class.
         /// </summary>
         /// <param name="message">Message.</param>
-        public CmisStorageException(string message) : base(message) { }
+        public CmisStorageException(string message) : base(message) { Code = 500L; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Cmis.Infrastructure.CmisStorageException"/> class.
         /// </summary>
         /// <param name="message">Message.</param>
         /// <param name="innerException">Inner exception.</param>
-        public CmisStorageException(string message, Exception innerException) : base(message, innerException) { }
+        public CmisStorageException(string message, Exception innerException) : base(message, innerException) { Code = 500L; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Cmis.Infrastructure.CmisStorageException"/> class.
@@ -89,7 +89,7 @@ namespace Cmis.Infrastructure
         /// <param name="innerException">Inner exception.</param>
         /// <param name="code">Exception code.</param>
         /// <param name="content">Exception content.</param>
-        public CmisStorageException(string message, Exception innerException, long? code, string content) : base(message, innerException, code, content) { }
+        public CmisStorageException(string message, Exception innerException, long? code, string content) : base(message, innerException, code, content) { Code = code ?? 500L; }
 
         #endregion
     }

@@ -103,25 +103,25 @@ namespace Cmis.Interface
 					CmisBaseTypeId.CmisFolder
 				},
 				Capabilities = new CmisRepositoryCapabilities
-				{
-					CapabilityContentStreamUpdatability = CmisCapabilityContentStreamUpdatability.None,
-					CapabilityChanges = CmisCapabilityChanges.None,
-					CapabilityRenditions = CmisCapabilityRenditions.None,
-					CapabilityGetDescendants = false,
-					CapabilityGetFolderTree = false,
-					CapabilityMultiﬁling = false,
-					CapabilityUnﬁling = false,
-					CapabilityVersionSpeciﬁcFiling = false,
-					CapabilityPWCSearchable = false,
-					CapabilityPWCUpdatable = false,
-					CapabilityAllVersionsSearchable = false,
-					CapabilityQuery = CmisCapabilityQuery.None,
+                {
+                    CapabilityContentStreamUpdatability = CmisCapabilityContentStreamUpdatability.Anytime,
+                    CapabilityChanges = CmisCapabilityChanges.None,
+                    CapabilityRenditions = CmisCapabilityRenditions.Read,
+                    CapabilityGetDescendants = true,
+                    CapabilityGetFolderTree = true,
+                    CapabilityMultiﬁling = true,
+                    CapabilityUnﬁling = true,
+                    CapabilityVersionSpeciﬁcFiling = true,
+                    CapabilityPWCSearchable = false,
+                    CapabilityPWCUpdatable = false,
+                    CapabilityAllVersionsSearchable = false,
+                    CapabilityQuery = CmisCapabilityQuery.BothSeparate,
 					CapabilityJoin = CmisCapabilityJoin.None,
 					CapabilityACL = CmisCapabilityACL.None
 				},
 				AclCapability = new CmisAclCapability
 				{
-					SupportedPermissions = CmisSupportedPermissions.Basic,
+                    SupportedPermissions = CmisSupportedPermissions.Basic,
 					Propagation = CmisAclProgagation.RepositoryDetermined,
 					Permissions = new List<ICmisPermissionDefinition>
 					{
