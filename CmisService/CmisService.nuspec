@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>CmisServer</id>
+    <version>0.1</version>
+    <title>.NET Core CMIS Server</title>
+    <authors>Dannys Janssen</authors>
+    <owners>Dannys Janssen</owners>
+    <projectUrl>https://github.com/dannys-janssen/CmisServer</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>CMIS Server implementation for .NET Core.</description>
+    <releaseNotes>Alpha release.</releaseNotes>
+    <copyright>Copyright Dannys Janssen 2017</copyright>
+    <tags>CMIS netcore</tags>
+    <dependencies>
+        <dependency id="Microsoft.AspNetCore" version="1.1.2" />
+        <dependency id="Microsoft.AspNetCore.Mvc" version="1.1.3" />
+        <dependency id="Microsoft.Extensions.Logging.Debug" version="1.1.2" />
+        <dependency id="Newtonsoft.Json" version="10.0.3" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin/Debug/netcoreapp1.1/*.dll" target="lib/netcoreapp1.1" />
+    <file src="bin/Debug/netcoreapp1.1/*.pdb" target="lib/netcoreapp1.1" />
+    <file src="bin/Debug/netcoreapp1.1/*.xml" target="lib/netcoreapp1.1" />
+    <file src="bin/Debug/netcoreapp1.1/*.json" target="lib/netcoreapp1.1" />
+  </files>
+</package>
