@@ -96,18 +96,20 @@ namespace Cmis.Interface
                 XNamespace cmisRaNs = Constants.XmlNamespaceCmisRestAtom;
                 XNamespace appNs = Constants.XmlNamespaceApp;
 
+				XElement serviceElement = new XElement(appNs + "service",
+					   new XAttribute(XNamespace.Xmlns + "atom", atomNs),
+					   new XAttribute(XNamespace.Xmlns + "cmis", cmisNs),
+					   new XAttribute(XNamespace.Xmlns + "cmisra", cmisRaNs),
+					   new XAttribute(XNamespace.Xmlns + "app", appNs));
 
-                XElement element = new XElement(appNs + "service",
-                   new XAttribute(XNamespace.Xmlns + "atom", atomNs),
-                   new XAttribute(XNamespace.Xmlns + "cmis", cmisNs),
-                   new XAttribute(XNamespace.Xmlns + "cmisra", cmisRaNs),
-                   new XAttribute(XNamespace.Xmlns + "app", appNs),
-                   ConvertWorkspace(instance.Workspaces[0]));
+                foreach(var ws in instance.Workspaces)
+                {
+					serviceElement.Add(ConvertWorkspace(ws));
+                }
 
-                result.Add(element);
+                result.Add(serviceElement);
 
                 return result;
-
             }
 
             return null;

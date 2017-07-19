@@ -171,135 +171,158 @@ namespace Cmis.Interface
         }
 
 		/// <summary>
-		/// Gets the AtomPub Service Document that contains the set of repositories that are available. See http://docs.oasis-open.org/cmis/CMIS/v1.1/os/CMIS-v1.1-os.html#x1-4280007
+		/// Gets the AtomPub Service Document that contains the set of repositories that are available. Can be filtered to return only informations for one repository. See http://docs.oasis-open.org/cmis/CMIS/v1.1/os/CMIS-v1.1-os.html#x1-4280007
 		/// </summary>
-		public async Task<IAtomService> GetServiceDocument()
+		/// <returns>The Atom service document.</returns>
+		/// <param name="repositoryId">Repository identifier. When not set, informations about all repositories are returned. Defaults to null.</param>
+		public async Task<IAtomService> GetServiceDocument(string repositoryId = null)
         {
-            var repositoryInfo = await GetRepositoryInfoAsync("FI");
+
+            var repositories = new List<string>();
+
+            if (string.IsNullOrWhiteSpace(repositoryId))
+            {
+                repositories.Add("FI");
+                repositories.Add("MM");
+            }
+            else
+            {
+                // check parameter
+                if (repositoryId != "FI" && repositoryId != "MM")
+                    throw new CmisObjectNotFoundException("Repository not found");
+                
+                repositories.Add(repositoryId);
+            }
+
+            // create service
             IAtomService result = new AtomService
             {
-                Workspaces = new List<IAtomWorkspace>
-                {
-                    new AtomWorkspace
-                    {
-                        Title = repositoryInfo.RepositoryId,
-                        Collections = new List<IAtomCollection>
-                        {
-                            new AtomCollection
-                            {
-                                Uri = $"{ServiceRoot}/api/{repositoryInfo.RepositoryId}/cmis/{Constants.CmisVersion}/atom/children?id=root",
-                                CollectionType = CmisCollectionType.Root,
-                                Title = "Root Collection",
-                                Accept = new List<CmisMediaType>
-                                {
-                                    CmisMediaType.Entry,
-                                    CmisMediaType.CmisAtom
-                                }
-                            },
-                            new AtomCollection
-                            {
-                                Uri = $"{ServiceRoot}/api/{repositoryInfo.RepositoryId}/cmis/versions/{Constants.CmisVersion}/atom/types",
-                                CollectionType = CmisCollectionType.Types,
-                                Title = "Types Collection",
-                                Accept = new List<CmisMediaType>
-                                {
-                                    
-                                }
-                            },
-                            new AtomCollection
-                            {
-                                Uri = $"{ServiceRoot}/api/{repositoryInfo.RepositoryId}/cmis/versions/{Constants.CmisVersion}/atom/query",
-                                CollectionType = CmisCollectionType.Query,
-                                Title = "Query Collection",
-                                Accept = new List<CmisMediaType>
-                                {
-                                    CmisMediaType.Query
-                                }
-                            },
-                            new AtomCollection
-                            {
-                                Uri = $"{ServiceRoot}/api/{repositoryInfo.RepositoryId}/cmis/versions/{Constants.CmisVersion}/atom/checkedout",
-                                CollectionType = CmisCollectionType.CheckedOut,
-                                Title = "Checked Out Collection",
+                Workspaces = new List<IAtomWorkspace>()
+            };
+
+            foreach(var repository in repositories)
+            {
+                var repositoryInfo = await GetRepositoryInfoAsync(repository);
+
+				result.Workspaces.Add(new AtomWorkspace
+				{
+					Title = repositoryInfo.RepositoryId,
+					Collections = new List<IAtomCollection>
+						{
+							new AtomCollection
+							{
+								Uri = $"{ServiceRoot}/api/{repositoryInfo.RepositoryId}/cmis/{Constants.CmisVersion}/atom/children?id=root",
+								CollectionType = CmisCollectionType.Root,
+								Title = "Root Collection",
 								Accept = new List<CmisMediaType>
 								{
-                                    CmisMediaType.CmisAtom
+									CmisMediaType.Entry,
+									CmisMediaType.CmisAtom
 								}
-                            },
-                            new AtomCollection
-                            {
-                                Uri = $"{ServiceRoot}/api/{repositoryInfo.RepositoryId}/cmis/versions/{Constants.CmisVersion}/atom/unfiled",
-                                CollectionType = CmisCollectionType.Unfiled,
-                                Title = "Unfiled Collection",
+							},
+							new AtomCollection
+							{
+								Uri = $"{ServiceRoot}/api/{repositoryInfo.RepositoryId}/cmis/versions/{Constants.CmisVersion}/atom/types",
+								CollectionType = CmisCollectionType.Types,
+								Title = "Types Collection",
+								Accept = new List<CmisMediaType>
+								{
+
+								}
+							},
+							new AtomCollection
+							{
+								Uri = $"{ServiceRoot}/api/{repositoryInfo.RepositoryId}/cmis/versions/{Constants.CmisVersion}/atom/query",
+								CollectionType = CmisCollectionType.Query,
+								Title = "Query Collection",
+								Accept = new List<CmisMediaType>
+								{
+									CmisMediaType.Query
+								}
+							},
+							new AtomCollection
+							{
+								Uri = $"{ServiceRoot}/api/{repositoryInfo.RepositoryId}/cmis/versions/{Constants.CmisVersion}/atom/checkedout",
+								CollectionType = CmisCollectionType.CheckedOut,
+								Title = "Checked Out Collection",
 								Accept = new List<CmisMediaType>
 								{
 									CmisMediaType.CmisAtom
 								}
-                            },
-                            new AtomCollection
-                            {
-                                Uri = $"{ServiceRoot}/api/{repositoryInfo.RepositoryId}/cmis/versions/{Constants.CmisVersion}/atom/update",
-                                CollectionType = CmisCollectionType.Update,
-                                Title = "Bulk Update Collection",
+							},
+							new AtomCollection
+							{
+								Uri = $"{ServiceRoot}/api/{repositoryInfo.RepositoryId}/cmis/versions/{Constants.CmisVersion}/atom/unfiled",
+								CollectionType = CmisCollectionType.Unfiled,
+								Title = "Unfiled Collection",
 								Accept = new List<CmisMediaType>
 								{
 									CmisMediaType.CmisAtom
 								}
-                            }
-                        },
-                        RepositoryInfo = repositoryInfo,
-                        Links = new List<IAtomLink>
-                        {
-                            new AtomLink
-                            {
-                                Relation = "http://docs.oasis-open.org/ns/cmis/link/200908/typedescendants",
-                                Reference = $"{ServiceRoot}/api/{repositoryInfo.RepositoryId}/cmis/versions/{Constants.CmisVersion}/atom/typedesc",
-                                MediaType = CmisMediaType.Feed
-                            },
-                            new AtomLink
-                            {
-                                Relation = "http://docs.oasis-open.org/ns/cmis/link/200908/foldertree",
-                                Reference = $"{ServiceRoot}/api/{repositoryInfo.RepositoryId}/cmis/versions/{Constants.CmisVersion}/atom/foldertree?id=root",
-                                MediaType = CmisMediaType.Descendants
-                            },
+							},
+							new AtomCollection
+							{
+								Uri = $"{ServiceRoot}/api/{repositoryInfo.RepositoryId}/cmis/versions/{Constants.CmisVersion}/atom/update",
+								CollectionType = CmisCollectionType.Update,
+								Title = "Bulk Update Collection",
+								Accept = new List<CmisMediaType>
+								{
+									CmisMediaType.CmisAtom
+								}
+							}
+						},
+					RepositoryInfo = repositoryInfo,
+					Links = new List<IAtomLink>
+						{
+							new AtomLink
+							{
+								Relation = "http://docs.oasis-open.org/ns/cmis/link/200908/typedescendants",
+								Reference = $"{ServiceRoot}/api/{repositoryInfo.RepositoryId}/cmis/versions/{Constants.CmisVersion}/atom/typedesc",
+								MediaType = CmisMediaType.Feed
+							},
+							new AtomLink
+							{
+								Relation = "http://docs.oasis-open.org/ns/cmis/link/200908/foldertree",
+								Reference = $"{ServiceRoot}/api/{repositoryInfo.RepositoryId}/cmis/versions/{Constants.CmisVersion}/atom/foldertree?id=root",
+								MediaType = CmisMediaType.Descendants
+							},
 							new AtomLink
 							{
 								Relation = "http://docs.oasis-open.org/ns/cmis/link/200908/rootdescendants",
 								Reference = $"{ServiceRoot}/api/{repositoryInfo.RepositoryId}/cmis/versions/{Constants.CmisVersion}/atom/descendants?id=root",
 								MediaType = CmisMediaType.Descendants,
-                                Id = "root"
+								Id = "root"
 							}
-                        },
-                        UriTemplates = new List<IAtomUriTemplate>
-                        {
-                            new AtomUriTemplate
-                            {
-                                Template = ServiceRoot + "/api/" + repositoryInfo.RepositoryId + "/cmis/versions/" + Constants.CmisVersion + "/atom/id?id={id}&amp;filter={filter}&amp;includeAllowableActions={includeAllowableActions}&amp;includeACL={includeACL}&amp;includePolicyIds={includePolicyIds}&amp;includeRelationships={includeRelationships}&amp;renditionFilter={renditionFilter}",
-                                MediaType = CmisMediaType.Entry,
-                                UriTemplateType = CmisUriTemplateType.ObjectById
-                            },
+						},
+					UriTemplates = new List<IAtomUriTemplate>
+						{
+							new AtomUriTemplate
+							{
+								Template = ServiceRoot + "/api/" + repositoryInfo.RepositoryId + "/cmis/versions/" + Constants.CmisVersion + "/atom/id?id={id}&amp;filter={filter}&amp;includeAllowableActions={includeAllowableActions}&amp;includeACL={includeACL}&amp;includePolicyIds={includePolicyIds}&amp;includeRelationships={includeRelationships}&amp;renditionFilter={renditionFilter}",
+								MediaType = CmisMediaType.Entry,
+								UriTemplateType = CmisUriTemplateType.ObjectById
+							},
 							new AtomUriTemplate
 							{
 								Template = ServiceRoot + "/api/" + repositoryInfo.RepositoryId + "/cmis/versions/" + Constants.CmisVersion + "/atom/path?path={path}&amp;filter={filter}&amp;includeAllowableActions={includeAllowableActions}&amp;includeACL={includeACL}&amp;includePolicyIds={includePolicyIds}&amp;includeRelationships={includeRelationships}&amp;renditionFilter={renditionFilter}",
 								MediaType = CmisMediaType.Entry,
-                                UriTemplateType = CmisUriTemplateType.ObjectByPath
+								UriTemplateType = CmisUriTemplateType.ObjectByPath
 							},
 							new AtomUriTemplate
 							{
 								Template = ServiceRoot + "/api/" + repositoryInfo.RepositoryId + "/cmis/versions/" + Constants.CmisVersion + "/atom/type?id={id}",
-                                MediaType = CmisMediaType.Entry,
-                                UriTemplateType = CmisUriTemplateType.TypeById
+								MediaType = CmisMediaType.Entry,
+								UriTemplateType = CmisUriTemplateType.TypeById
 							},
 							new AtomUriTemplate
-                            {
-                                Template = ServiceRoot + "/api/" + repositoryInfo.RepositoryId + "/cmis/versions" + Constants.CmisVersion + "/atom/query?q={q}&amp;searchAllVersions={searchAllVersions}&amp;includeAllowableActions={includeAllowableActions}&amp;includeRelationships={includeRelationships}&amp;maxItems={maxItems}&amp;skipCount={skipCount}",
-                                MediaType = CmisMediaType.Feed,
-                                UriTemplateType = CmisUriTemplateType.Query
+							{
+								Template = ServiceRoot + "/api/" + repositoryInfo.RepositoryId + "/cmis/versions" + Constants.CmisVersion + "/atom/query?q={q}&amp;searchAllVersions={searchAllVersions}&amp;includeAllowableActions={includeAllowableActions}&amp;includeRelationships={includeRelationships}&amp;maxItems={maxItems}&amp;skipCount={skipCount}",
+								MediaType = CmisMediaType.Feed,
+								UriTemplateType = CmisUriTemplateType.Query
 							}
-                        }
-                    }
-                }
-            };
+						}
+				});
+            }
 
             return result;
         }

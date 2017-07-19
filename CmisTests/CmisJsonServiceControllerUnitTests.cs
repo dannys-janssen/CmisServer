@@ -1,7 +1,5 @@
-using System;
 using Xunit;
 using System.Threading.Tasks;
-using Moq;
 using Cmis.Infrastructure;
 using Cmis.Service;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +8,9 @@ using System.Collections.Generic;
 
 namespace CmisTests
 {
+    /// <summary>
+    /// CMIS JSON service controller unit tests.
+    /// </summary>
     public class CmisJsonServiceControllerUnitTests
     {
         [Fact]

@@ -4,7 +4,6 @@
     <TargetFramework>netcoreapp1.1</TargetFramework>
     <RootNamespace>Cmis.Service</RootNamespace>
     <Description>.NET Core Web API Services for .NET Core CMIS server.</Description>
-    <PackOnBuild>true</PackOnBuild>
     <PackageId>CmisService</PackageId>
     <PackageVersion>0.1</PackageVersion>
     <Authors>Dannys Janssen</Authors>
