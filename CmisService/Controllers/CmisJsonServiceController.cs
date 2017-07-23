@@ -31,48 +31,83 @@ namespace Cmis.Service
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Net.Http.Headers;
     using Cmis.Interface;
     using Cmis.Infrastructure;
+    using Microsoft.Extensions.Logging;
+    using Newtonsoft.Json;
 
     [Route("api/cmis/1.1/browser")]
     public class CmisJsonServiceController : Controller
     {
+		#region Fields
+
+		/// <summary>
+		/// The CMIS repository service instance.
+		/// </summary>
+		readonly ICmisRepositoryService _repositoryService;
+
         /// <summary>
-        /// The CMIS connector instance.
+        /// The serializer settings.
         /// </summary>
-        readonly ICmisConnector _connector;
+        readonly JsonSerializerSettings _serializerSettings;
+
+		/// <summary>
+		/// The logger.
+		/// </summary>
+		readonly ILogger<CmisJsonServiceController> _logger;
+
+        #endregion
+
+        #region ctor
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Cmis.Service.CmisJsonServiceController"/> class.
         /// </summary>
-        /// <param name="connector">Configuration store.</param>
-        public CmisJsonServiceController(ICmisConnector connector)
+        /// <param name="repositoryService">CMIS repository service instance.</param>
+        public CmisJsonServiceController(ICmisRepositoryService repositoryService, ILogger<CmisJsonServiceController> logger)
         {
-            _connector = connector;
+            _repositoryService = repositoryService;
+            _logger = logger;
+			_serializerSettings = new JsonSerializerSettings
+            {
+				Converters = new List<JsonConverter>()
+			};
+
+			_serializerSettings.Converters.Add(new CmisRepositoryInfoJsonConverter());
+			_serializerSettings.Converters.Add(new CmisRepositoryShortInfoJsonConverter());
+			_serializerSettings.Formatting = Formatting.Indented;
         }
+
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// Gets the list of repositories.
+        /// </summary>
+        /// <returns>The repositories list.</returns>
+        [ValidateModelFilter]
+        public async Task<IActionResult> GetRepositories()
+        {
+            SetServiceRoot();
+
+            var result = await _repositoryService.GetRepositoriesAsync();
+            return new JsonResult(result, _serializerSettings);
+        }
+
+		#endregion
+
+		#region Private Methods
 
 		/// <summary>
-		/// Gets the list of repositories.
+		/// Sets the service root URI.
 		/// </summary>
-		/// <returns>The repositories list.</returns>
-        [ValidateModelFilter]
-		public async Task<IActionResult> GetRepositories()
-        {
-            var serviceRoot = Request == null ? "http://localhost" : $"{Request.Scheme}://{Request.Host}";
-			_connector.ServiceRoot = serviceRoot;
+		void SetServiceRoot()
+		{
+			var serviceRoot = $"{Request.Scheme}://{Request.Host}";
+			_repositoryService.ServiceRoot = serviceRoot;
+		}
 
-            var result = await _connector.GetRepositoriesAsync();
-            var serializerSettings = new Newtonsoft.Json.JsonSerializerSettings
-            {
-                Converters = new List<Newtonsoft.Json.JsonConverter>()
-            };
-
-            serializerSettings.Converters.Add(new CmisRepositoryInfoJsonConverter());
-            serializerSettings.Converters.Add(new CmisRepositoryShortInfoJsonConverter());
-			serializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
-
-            return new JsonResult(result, serializerSettings);
-        }
-    }
+		#endregion
+	}
 }
