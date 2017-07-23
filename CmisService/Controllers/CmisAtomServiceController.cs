@@ -78,7 +78,7 @@ namespace Cmis.Service
         /// <summary>
         /// Gets the list of repositories.
         /// </summary>
-        /// <returns>The repositories list.</returns>
+        /// <returns>AtomPub service document containing the repositories list.</returns>
         [HttpGet("api/cmis/1.1/atom")]
         public async Task<IActionResult> GetRepositories()
         {
@@ -87,6 +87,19 @@ namespace Cmis.Service
             var result = await _repositoryService.GetServiceDocumentAsync();
             return new XmlResult(_serviceConverter.Convert(result), Constants.CmisMediaTypeService);
         }
+
+		/// <summary>
+		/// Gets the repository info for a specific CMIS repository.
+		/// </summary>
+		/// <returns>AtomPub service document containing repository informations for a specific repository.</returns>
+		/// <param name="repositoryId">Repository identifier.</param>
+		[HttpGet("api/{repositoryId}/cmis/1.1/atom")]
+		public async Task<IActionResult> GetRepository(string repositoryId)
+		{
+			SetServiceRoot();
+            var result = await _repositoryService.GetServiceDocumentAsync(repositoryId);
+            return new XmlResult(_serviceConverter.Convert(result), Constants.CmisMediaTypeService);
+		}
 
         #endregion
 

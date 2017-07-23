@@ -57,6 +57,7 @@ namespace Cmis.Infrastructure
 		/// Gets the AtomPub Service Document that contains the set of repositories that are available. See http://docs.oasis-open.org/cmis/CMIS/v1.1/os/CMIS-v1.1-os.html#x1-4280007
 		/// </summary>
 		/// <returns>The Atom service document.</returns>
-		Task<IAtomService> GetServiceDocumentAsync();
+		/// <param name="repositoryId">Repository identifier. When not set, informations about all repositories are returned. Defaults to null.</param>
+        Task<IAtomService> GetServiceDocumentAsync(string repositoryId = null);
     }
 }
