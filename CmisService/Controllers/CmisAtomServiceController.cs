@@ -35,45 +35,73 @@ namespace Cmis.Service
 	using Cmis.Infrastructure;
     using Microsoft.Extensions.Logging;
 
-    [Route("api/cmis/1.1/atom")]
+    /// <summary>
+    /// CMIS AtomPub service controller.
+    /// </summary>
     public class CmisAtomServiceController : Controller
     {
-		/// <summary>
-		/// The configuration store.
-		/// </summary>
-        readonly ICmisConnector _connector;
+        #region Fields
+
+        /// <summary>
+        /// The CMIS repository service instance.
+        /// </summary>
+        readonly ICmisRepositoryService _repositoryService;
+
+        /// <summary>
+        /// The AtomPub service converter.
+        /// </summary>
+        readonly AtomServiceXDocumentConverter _serviceConverter;
 
         /// <summary>
         /// The logger.
         /// </summary>
         readonly ILogger<CmisAtomServiceController> _logger;
 
+        #endregion
+
+        #region ctor
+
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Cmis.Service.CmisAtomServiceController"/> class.
         /// </summary>
-        /// <param name="connector">CMIS connector instance.</param>
-        public CmisAtomServiceController(ICmisConnector connector, ILogger<CmisAtomServiceController> logger)
-		{
-            _connector = connector;
+        /// <param name="repositoryService">CMIS repository service instance.</param>
+        public CmisAtomServiceController(ICmisRepositoryService repositoryService, ILogger<CmisAtomServiceController> logger)
+        {
+            _repositoryService = repositoryService;
+            _serviceConverter = new AtomServiceXDocumentConverter();
             _logger = logger;
-		}
+        }
 
-		/// <summary>
-		/// Gets the list of repositories.
-		/// </summary>
-		/// <returns>The repositories list.</returns>
-		public async Task<IActionResult> GetRepositories()
-		{
-			var serviceRoot = $"{Request.Scheme}://{Request.Host}";
-			_connector.ServiceRoot = serviceRoot;
+        #endregion
 
-            var result = await _connector.GetServiceDocument();
+        #region Public Methods
 
-            var converter = new AtomServiceXDocumentConverter();
+        /// <summary>
+        /// Gets the list of repositories.
+        /// </summary>
+        /// <returns>The repositories list.</returns>
+        [HttpGet("api/cmis/1.1/atom")]
+        public async Task<IActionResult> GetRepositories()
+        {
+            SetServiceRoot();
 
+            var result = await _repositoryService.GetServiceDocumentAsync();
+            return new XmlResult(_serviceConverter.Convert(result), Constants.CmisMediaTypeService);
+        }
 
-            return new XmlResult(converter.Convert(result), Constants.CmisMediaTypeService);
-		}
+        #endregion
 
-	}
+        #region Private Methods
+
+        /// <summary>
+        /// Sets the service root URI.
+        /// </summary>
+        void SetServiceRoot()
+        {
+            var serviceRoot = $"{Request.Scheme}://{Request.Host}";
+            _repositoryService.ServiceRoot = serviceRoot;
+        }
+
+        #endregion
+    }
 }

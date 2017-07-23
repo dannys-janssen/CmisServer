@@ -1,4 +1,4 @@
-﻿//
+﻿﻿//
 // IRepositoryService.cs
 //
 // Author:
@@ -34,6 +34,12 @@ namespace Cmis.Infrastructure
     /// </summary>
     public interface ICmisRepositoryService
     {
+		/// <summary>
+		/// Gets or sets the service root URI. 
+		/// </summary>
+		/// <value>The service root.</value>
+		string ServiceRoot { get; set; }
+
 		/// <summary>
 		/// Returns a list of CMIS repositories available from this CMIS service endpoint.
 		/// </summary>

@@ -433,6 +433,16 @@ namespace Cmis.Infrastructure
         public const string MockupConnectorClass = "Cmis.Interface.CmisMockupConnector, CmisInterface";
 
         /// <summary>
+        /// Repository service setting.
+        /// </summary>
+        public const string RepositoryServiceSetting = "RepositoryService";
+
+        /// <summary>
+        /// Default repository service class.
+        /// </summary>
+        public const string DefaultRepositoryServiceClass = "Cmis.Interface.CmisRepositoryService, CmisInterface";
+
+        /// <summary>
         /// The xml namespace for Atom pub (prefix: atom).
         /// </summary>
         public const string XmlNamespaceAtomPub = "http://www.w3.org/2005/Atom";

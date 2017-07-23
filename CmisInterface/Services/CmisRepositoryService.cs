@@ -35,7 +35,13 @@ namespace Cmis.Interface
     /// </summary>
     public class CmisRepositoryService : ICmisRepositoryService
     {
-        #region Properties
+		#region Properties
+
+		/// <summary>
+		/// Gets or sets the service root URI. 
+		/// </summary>
+		/// <value>The service root.</value>
+		public string ServiceRoot { get; set; }
 
         /// <summary>
         /// Gets the CMIS connector instance.
@@ -66,6 +72,7 @@ namespace Cmis.Interface
         /// <returns>The list of repository identifiers and names.</returns>
         public async Task<IList<ICmisRepositoryShortInfo>> GetRepositoriesAsync()
         {
+            Connector.ServiceRoot = ServiceRoot;
             return await Connector.GetRepositoriesAsync();
         }
 
@@ -76,6 +83,7 @@ namespace Cmis.Interface
         /// <param name="repositoryId">Repository identifier.</param>
         public async Task<ICmisRepositoryInfo> GetRepositoryInfoAsync(string repositoryId)
         {
+            Connector.ServiceRoot = ServiceRoot;
             return await Connector.GetRepositoryInfoAsync(repositoryId);
         }
 
@@ -85,6 +93,7 @@ namespace Cmis.Interface
 		/// <returns>The Atom service document.</returns>
 		public async Task<IAtomService> GetServiceDocumentAsync()
         {
+            Connector.ServiceRoot = ServiceRoot;
             return await Connector.GetServiceDocument();
         }
 
