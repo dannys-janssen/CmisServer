@@ -408,6 +408,31 @@ namespace Cmis.Infrastructure
 		public const string CmisCardinalityMulti = "multi";
 
         /// <summary>
+        /// CMIS date time resolution: year.
+        /// </summary>
+        public const string CmisDateTimeResolutionYear = "year";
+
+        /// <summary>
+        /// CMIS date time resolution: date.
+        /// </summary>
+        public const string CmisDateTimeResolutionDate = "date";
+
+        /// <summary>
+        /// CMIS date time resolution: time.
+        /// </summary>
+        public const string CmisDateTimeResolutionTime = "time";
+
+        /// <summary>
+        /// CMIS decimal 32 bit precision.
+        /// </summary>
+        public const string CmisDecimalPrecisionBits32 = "32";
+
+		/// <summary>
+		/// CMIS decimal 64 bit precision.
+		/// </summary>
+		public const string CmisDecimalPrecisionBits64 = "64";
+
+        /// <summary>
         /// CMIS updatability read only.
         /// </summary>
         public const string CmisUpdatabilityReadOnly = "readonly";
