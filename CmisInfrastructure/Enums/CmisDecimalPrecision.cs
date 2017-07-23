@@ -4,7 +4,7 @@
 // Author:
 //       Dannys Janssen
 //
-// Copyright (c) 2017 (c) 2017 WMD Group GmbH
+// Copyright (c) 2017 Dannys Janssen
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
