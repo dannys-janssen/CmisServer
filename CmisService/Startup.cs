@@ -66,12 +66,13 @@ namespace Cmis.Service
             // Add framework services.
             services.AddMvc();
 
-            // initialize local application services from configuration
-            var cmisConfigSection = Configuration.GetSection("Cmis");
+			// Add application services
+
+			// initialize local application services from configuration
+			var cmisConfigSection = Configuration.GetSection("Cmis");
             var connectorClassString = cmisConfigSection != null ? cmisConfigSection.GetValue<string>(Constants.ConnectorClassSetting) : Constants.MockupConnectorClass;
             var connectorType = !string.IsNullOrWhiteSpace(connectorClassString) ? Type.GetType(connectorClassString) : Type.GetType(Constants.MockupConnectorClass);
 
-			// Add application services
 			if (connectorType != null)
             {
                 // add connector from configuration
@@ -82,7 +83,22 @@ namespace Cmis.Service
                 // Fallback, when no connector
                 services.AddSingleton(typeof(ICmisConnector), typeof(CmisMockupConnector));
             }
-        }
+
+            var repositoryServiceClassString = cmisConfigSection != null ? cmisConfigSection.GetValue<string>(Constants.RepositoryServiceSetting) : Constants.DefaultRepositoryServiceClass;
+			var repositoryServiceType = !string.IsNullOrWhiteSpace(repositoryServiceClassString) ? Type.GetType(repositoryServiceClassString) : Type.GetType(Constants.DefaultRepositoryServiceClass);
+
+			if (repositoryServiceType != null)
+			{
+				// add repository service from configuration
+				services.AddSingleton(typeof(ICmisRepositoryService), repositoryServiceType);
+			}
+			else
+			{
+				// Fallback, when no repository service
+                services.AddSingleton(typeof(ICmisRepositoryService), typeof(CmisRepositoryService));
+			}
+
+		}
 
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
