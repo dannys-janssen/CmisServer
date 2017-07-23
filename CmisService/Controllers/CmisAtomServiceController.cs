@@ -28,11 +28,10 @@
 
 namespace Cmis.Service
 {
-	using System.Collections.Generic;
-	using System.Threading.Tasks;
-	using Microsoft.AspNetCore.Mvc;
-	using Cmis.Interface;
-	using Cmis.Infrastructure;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Mvc;
+    using Cmis.Interface;
+    using Cmis.Infrastructure;
     using Microsoft.Extensions.Logging;
 
     /// <summary>
