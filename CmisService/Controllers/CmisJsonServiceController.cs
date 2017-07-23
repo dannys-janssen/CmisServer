@@ -36,7 +36,9 @@ namespace Cmis.Service
     using Microsoft.Extensions.Logging;
     using Newtonsoft.Json;
 
-    [Route("api/cmis/1.1/browser")]
+    /// <summary>
+    /// CMIS JSON service controller.
+    /// </summary>
     public class CmisJsonServiceController : Controller
     {
 		#region Fields
@@ -87,13 +89,26 @@ namespace Cmis.Service
         /// </summary>
         /// <returns>The repositories list.</returns>
         [ValidateModelFilter]
+        [HttpGet("api/cmis/1.1/browser")]
         public async Task<IActionResult> GetRepositories()
         {
             SetServiceRoot();
-
             var result = await _repositoryService.GetRepositoriesAsync();
             return new JsonResult(result, _serializerSettings);
         }
+
+		/// <summary>
+		/// Gets the repository info for a specific CMIS repository.
+		/// </summary>
+		/// <returns>The repository info.</returns>
+		/// <param name="repositoryId">Repository identifier.</param>
+        [HttpGet("api/{repositoryId}/cmis/1.1/browser")]
+		public async Task<IActionResult> GetRepositoryInfo(string repositoryId)
+		{
+            SetServiceRoot();
+            var result = await _repositoryService.GetRepositoryInfoAsync(repositoryId);
+			return new JsonResult(result, _serializerSettings);
+		}
 
 		#endregion
 

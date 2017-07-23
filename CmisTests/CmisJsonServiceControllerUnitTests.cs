@@ -17,7 +17,8 @@ namespace CmisTests
         public async Task GetServiceDocument_ReturnsJsonResultAndICmisRepositoryShortInfo()
         {
             var mockupConnector = new CmisMockupConnector();
-            var controller = new CmisJsonServiceController(mockupConnector);
+            var repositoryService = new CmisRepositoryService(mockupConnector);
+            var controller = new CmisJsonServiceController(repositoryService, null);
             var result = await controller.GetRepositories();
 
             Assert.IsType<JsonResult>(result);
