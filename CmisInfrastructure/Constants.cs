@@ -398,6 +398,36 @@ namespace Cmis.Infrastructure
 		public const string CmisPropertyTypeHtml = "html";
 
         /// <summary>
+        /// CMIS single cardinality.
+        /// </summary>
+        public const string CmisCardinalitySingle = "single";
+
+		/// <summary>
+		/// CMIS multi cardinality.
+		/// </summary>
+		public const string CmisCardinalityMulti = "multi";
+
+        /// <summary>
+        /// CMIS updatability read only.
+        /// </summary>
+        public const string CmisUpdatabilityReadOnly = "readonly";
+
+        /// <summary>
+        /// CMIS updatability read write.
+        /// </summary>
+        public const string CmisUpdatabilityReadWrite = "readwrite";
+
+        /// <summary>
+        /// CMIS updatability when checked out.
+        /// </summary>
+        public const string CmisUpdatabilityWhenCheckedOut = "whencheckedout";
+
+        /// <summary>
+        /// CMIS updatability on create.
+        /// </summary>
+        public const string CmisUpdatabilityOnCreate = "oncreate";
+
+        /// <summary>
         /// CMIS relationship.
         /// </summary>
         public const string CmisRelationship = CmisPrefix + ":relationship";
