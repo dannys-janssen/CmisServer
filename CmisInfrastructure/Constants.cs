@@ -408,6 +408,21 @@ namespace Cmis.Infrastructure
 		public const string CmisCardinalityMulti = "multi";
 
         /// <summary>
+        /// CMIS content stream not allowed.
+        /// </summary>
+        public const string CmisContentStreamNotAllowed = "notallowed";
+
+        /// <summary>
+        /// CMIS content stream allowed.
+        /// </summary>
+        public const string CmisContentStreamAllowed = "allowed";
+
+        /// <summary>
+        /// CMIS content stream required.
+        /// </summary>
+        public const string CmisContentStreamRequired = "required";
+
+        /// <summary>
         /// CMIS date time resolution: year.
         /// </summary>
         public const string CmisDateTimeResolutionYear = "year";
